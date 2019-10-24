@@ -278,6 +278,7 @@ if perform_FS is True:
             # check if tmp_model has varimp()
             if tmp_model.varimp() is None:
                 print(str(model))
+                del var_imp_models[str(model)]
             else:
                 # check if tmp_model is glm - it has no varimp() but coef()
                 if ('glm' in tmp_model.algo) is True:
