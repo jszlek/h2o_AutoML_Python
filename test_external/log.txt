@@ -1,0 +1,64 @@
+Checking whether there is an H2O instance running at http://localhost:54531 ..... not found.
+Attempting to start a local H2O server...
+  Java Version: Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/test_external/export; openjdk version "1.8.0_222"; OpenJDK Runtime Environment (IcedTea 3.13.0) (build 1.8.0_222-b10 suse-lp150.2.19.1-x86_64); OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
+  Starting server from /home/kuba/anaconda3/envs/h2o/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
+  Ice root: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/test_external/export
+  JVM stdout: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/test_external/export/tmp1e0046sy/h2o_kuba_started_from_python.out
+  JVM stderr: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/test_external/export/tmp1e0046sy/h2o_kuba_started_from_python.err
+  Server is running at http://127.0.0.1:54531
+Connecting to H2O server at http://127.0.0.1:54531 ... successful.
+--------------------------  ------------------------------------------------------------------
+H2O cluster uptime:         00 secs
+H2O cluster timezone:       Europe/Warsaw
+H2O data parsing timezone:  UTC
+H2O cluster version:        3.26.0.8
+H2O cluster version age:    12 days
+H2O cluster name:           AzD1nbUBYoktkvAt
+H2O cluster total nodes:    1
+H2O cluster free memory:    3.464 Gb
+H2O cluster total cores:    12
+H2O cluster allowed cores:  12
+H2O cluster status:         accepting new members, healthy
+H2O connection url:         http://127.0.0.1:54531
+H2O connection proxy:       {'http': None, 'https': None}
+H2O internal security:      False
+H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
+Python version:             3.6.5 final
+--------------------------  ------------------------------------------------------------------
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+Model summary 
+ -------------
+Algorithm: stackedensemble
+Type: unsupervised
+Run time [s]: 131
+Seed: None
+RMSE: 5.8380029704719885
+MSE: 34.08227868323976
+R2: 0.9638725641577888
+AIC: 4753.157698535242
+-------------
+No model summary for this model
+Metalearner name: 
+metalearner_AUTO_StackedEnsemble_BestOfFamily_AutoML_20191030_225608 
+
+Metalearner algorithm: 
+glm 
+
+Ensemble contains models: 
+GBM_grid_1_AutoML_20191030_225608_model_25
+XGBoost_grid_1_AutoML_20191030_225608_model_2
+XRT_1_AutoML_20191030_225608
+DRF_1_AutoML_20191030_225608
+DeepLearning_grid_1_AutoML_20191030_225608_model_1
+GLM_grid_1_AutoML_20191030_225608_model_1
+--------------------------- 
+
+stackedensemble prediction progress: |████████████████████████████████████| 100%
+/home/kuba/anaconda3/envs/h2o/lib/python3.6/site-packages/h2o/job.py:70: UserWarning: Test/Validation dataset is missing column 'Fold_no': substituting in a column of NaN
+  warnings.warn(w)
+ 
+
+ 
+
+Model predictions: 
+H2O session _sid_81ef closed.
