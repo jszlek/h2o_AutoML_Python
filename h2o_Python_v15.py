@@ -30,7 +30,11 @@ h2o_max_runtime_secs = 15*60
 
 # perfor_FS AutoML execution time
 # - only if perform_FS is True
-FS_h2o_max_runtime_secs = 15*60
+FS_h2o_max_runtime_secs = 1*60
+
+# How many loops of FS
+# - only if perform_FS is True
+my_FS_loops = 10
 
 # -----------------------------------------------------------
 # Perform feature selection before training AutoML in 10-fold cv
@@ -207,7 +211,7 @@ if perform_FS is True:
     training_frame = h2o.H2OFrame(train_set)
     testing_frame = h2o.H2OFrame(test_set)
     
-    aml = H2OAutoML(max_runtime_secs = FS_h2o_max_runtime_secs,
+    tmp_FS_model = H2OAutoML(max_runtime_secs = FS_h2o_max_runtime_secs,
                     seed = my_seed_FS,
                     project_name = aml_name,
                     export_checkpoints_dir = str(my_export_dir),
@@ -217,8 +221,35 @@ if perform_FS is True:
                     verbosity = 'info',
                     sort_metric = 'RMSE')
     
-    # train model for FS
-    aml.train(y = y_idx, training_frame = training_frame, leaderboard_frame = testing_frame)
+    # Define FS_loops counter
+    no_FS_loops = 1
+    
+    # the counter is set from 1, therefore = my_FS_loops + 1
+    while no_FS_loops < (my_FS_loops + 1): 
+        
+        # print out no of loop
+        print('\n' + 'Starting FS loop no: ' + str(no_FS_loops) + '\n')
+        
+        # train model for FS
+        tmp_FS_model.train(y = y_idx, training_frame = training_frame, leaderboard_frame = testing_frame)
+        
+        # write first model as aml
+        if no_FS_loops is 1:
+            aml = tmp_FS_model
+        
+        # overwrite rmse for the tmp_FS_model
+        tmp_FS_rmse = tmp_FS_model.leader.model_performance(testing_frame)['RMSE']
+        
+        # print out RMSE for the model
+        print('\n' + 'RMSE for FS loop no: ' + str(no_FS_loops) + ' is ' + str(tmp_FS_model.leader.model_performance(testing_frame)['RMSE']) + '\n')
+        
+        # if new tmp_FS_model has better performance overwrite it to aml
+        if tmp_FS_rmse < tmp_FS_model.leader.model_performance(testing_frame)['RMSE']:
+            aml = tmp_FS_model
+        
+        # FS_loop counter +1
+        no_FS_loops += 1
+        
     
     # saving model
     my_model_FS_path = h2o.save_model(aml.leader, path = './model_FS')
@@ -365,348 +396,348 @@ if perform_FS is True:
 # 2nd option - use_classic_approach
 # ----------------------------------------------------
 
-if use_classic_approach is True and perform_FS is False:
-    # Load testing data in a loop and make folds based on them 
-    # 1) List all files with pattern 't-*.txt' in ./10cv_FS
-    all_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
+#if use_classic_approach is True and perform_FS is False:
+    ## Load testing data in a loop and make folds based on them 
+    ## 1) List all files with pattern 't-*.txt' in ./10cv_FS
+    #all_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
     
-    # 2) Sort list of filenames from 1 to 10
-    all_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
+    ## 2) Sort list of filenames from 1 to 10
+    #all_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
     
-    # 3) read all files in a list into a data_frame and make indicies for each t-file
-    df_classic = pd.DataFrame()
-    df_classic = pd.concat([pd.read_csv(all_filenames[index], header = [0], sep = '\t', engine = 'python').assign(Fold_no=index+1) for index in range(len(all_filenames))])
+    ## 3) read all files in a list into a data_frame and make indicies for each t-file
+    #df_classic = pd.DataFrame()
+    #df_classic = pd.concat([pd.read_csv(all_filenames[index], header = [0], sep = '\t', engine = 'python').assign(Fold_no=index+1) for index in range(len(all_filenames))])
     
-    # index of the output column
-    y_idx = df_classic.columns[df_classic.shape[1]-2]
-    training_frame = h2o.H2OFrame(df_classic)
+    ## index of the output column
+    #y_idx = df_classic.columns[df_classic.shape[1]-2]
+    #training_frame = h2o.H2OFrame(df_classic)
     
-    # assign fold column name
-    assignment_type = 'Fold_no'
+    ## assign fold column name
+    #assignment_type = 'Fold_no'
     
-    # set new AutoML options
-    aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
-                         seed = my_seed_classic_approach,
-                         project_name = aml2_name,
-                         nfolds = no_folds,
-                         export_checkpoints_dir = str(my_export_dir),
-                         keep_cross_validation_predictions = my_keep_cross_validation_predictions,
-                         keep_cross_validation_models = my_keep_cross_validation_models,
-                         keep_cross_validation_fold_assignment = my_keep_cross_validation_fold_assignment,
-                         verbosity = 'info',
-                         sort_metric = 'RMSE')
+    ## set new AutoML options
+    #aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
+                         #seed = my_seed_classic_approach,
+                         #project_name = aml2_name,
+                         #nfolds = no_folds,
+                         #export_checkpoints_dir = str(my_export_dir),
+                         #keep_cross_validation_predictions = my_keep_cross_validation_predictions,
+                         #keep_cross_validation_models = my_keep_cross_validation_models,
+                         #keep_cross_validation_fold_assignment = my_keep_cross_validation_fold_assignment,
+                         #verbosity = 'info',
+                         #sort_metric = 'RMSE')
     
-    # train AutoML with fold_column!
-    aml_10cv.train(y = y_idx, training_frame = training_frame, fold_column = assignment_type)
+    ## train AutoML with fold_column!
+    #aml_10cv.train(y = y_idx, training_frame = training_frame, fold_column = assignment_type)
     
-    # save h2o model
-    print('Saving leader h2o model in ./model_10cv and ./test_external')
-    my_10cv_model_path = h2o.save_model(aml_10cv.leader, path = './model_10cv')
+    ## save h2o model
+    #print('Saving leader h2o model in ./model_10cv and ./test_external')
+    #my_10cv_model_path = h2o.save_model(aml_10cv.leader, path = './model_10cv')
     
-    h2o.save_model(aml_10cv.leader, path = './test_external')
+    #h2o.save_model(aml_10cv.leader, path = './test_external')
     
-    print('')
-    print('The final model afer k-fold cv is located at: ')
-    print(str(my_10cv_model_path))
-    print('')
+    #print('')
+    #print('The final model afer k-fold cv is located at: ')
+    #print(str(my_10cv_model_path))
+    #print('')
     
-    # Download POJO or MOJO
-    if save_pojo_or_mojo is True:
-        if aml_10cv.leader.have_pojo is True:
-            aml_10cv.leader.download_pojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
-        if aml_10cv.leader.have_mojo is True:
-            aml_10cv.leader.download_mojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
+    ## Download POJO or MOJO
+    #if save_pojo_or_mojo is True:
+        #if aml_10cv.leader.have_pojo is True:
+            #aml_10cv.leader.download_pojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
+        #if aml_10cv.leader.have_mojo is True:
+            #aml_10cv.leader.download_mojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
     
-    # get the best model key
-    model_key = aml_10cv.leader.key
+    ## get the best model key
+    #model_key = aml_10cv.leader.key
     
-    # get the models id
-    model_ids = list(aml_10cv.leaderboard['model_id'].as_data_frame().iloc[:,0])
+    ## get the models id
+    #model_ids = list(aml_10cv.leaderboard['model_id'].as_data_frame().iloc[:,0])
     
-    # get the best model
-    m = h2o.get_model(aml_10cv.leader.key)
-    print('Leader model: ')
-    print(m.key)
+    ## get the best model
+    #m = h2o.get_model(aml_10cv.leader.key)
+    #print('Leader model: ')
+    #print(m.key)
     
     
-    if ("StackedEnsemble" in aml_10cv.leader.key) is True:
-        # get the metalearner name
-        se_meta_model = h2o.get_model(m.metalearner()['name'])
-        my_se_meta_model_path = h2o.save_model(se_meta_model, path = './model_10cv')
-        print('')
-        print('The meta model of the best model is located at: ')
-        print(str(my_se_meta_model_path))
-        print('')
+    #if ("StackedEnsemble" in aml_10cv.leader.key) is True:
+        ## get the metalearner name
+        #se_meta_model = h2o.get_model(m.metalearner()['name'])
+        #my_se_meta_model_path = h2o.save_model(se_meta_model, path = './model_10cv')
+        #print('')
+        #print('The meta model of the best model is located at: ')
+        #print(str(my_se_meta_model_path))
+        #print('')
         
-        h2o_cv_data = se_meta_model.cross_validation_holdout_predictions()
-        pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]], training_frame['Fold_no']])
+        #h2o_cv_data = se_meta_model.cross_validation_holdout_predictions()
+        #pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]], training_frame['Fold_no']])
             
-        # get a list of models - save and print out
-        model_list = []
-        print('Saving constituents of the StackedEnsemble')
-        for model in m.params['base_models']['actual']:
-            model_list.append(model['name'])
-            my_tmp_model_path = h2o.save_model(h2o.get_model(str(model['name'])), path = './model_10cv')
-            print(str(my_tmp_model_path))
+        ## get a list of models - save and print out
+        #model_list = []
+        #print('Saving constituents of the StackedEnsemble')
+        #for model in m.params['base_models']['actual']:
+            #model_list.append(model['name'])
+            #my_tmp_model_path = h2o.save_model(h2o.get_model(str(model['name'])), path = './model_10cv')
+            #print(str(my_tmp_model_path))
             
-        print('Stacked Ensemble model contains: ')
-        print(model_list)
+        #print('Stacked Ensemble model contains: ')
+        #print(model_list)
         
         
-    else:
-        h2o_cv_data = m.cross_validation_holdout_predictions()
-        pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]],training_frame['Fold_no']])
+    #else:
+        #h2o_cv_data = m.cross_validation_holdout_predictions()
+        #pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]],training_frame['Fold_no']])
         
-# ------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------
 
 
-# ----------------------------------------------------------------
-# 3rd option - use_classic_approach is False and perfor_FS is True
-# ----------------------------------------------------------------
+## ----------------------------------------------------------------
+## 3rd option - use_classic_approach is False and perfor_FS is True
+## ----------------------------------------------------------------
 
-if use_classic_approach is False and perform_FS is True:
-        # Perform k-fold cv 
-        # split on train - test dataset by group - according to no_folds
-        gkf = GroupKFold(n_splits=no_folds)
-        cv_fold = 0
+#if use_classic_approach is False and perform_FS is True:
+        ## Perform k-fold cv 
+        ## split on train - test dataset by group - according to no_folds
+        #gkf = GroupKFold(n_splits=no_folds)
+        #cv_fold = 0
         
-        for train_index, test_index in gkf.split(X, y, groups=groups):
-            cv_fold += 1
-            print("CV fold: ", cv_fold)
-            print("Train Index: ", train_index)
-            print("Test Index: ", test_index, "\n")
+        #for train_index, test_index in gkf.split(X, y, groups=groups):
+            #cv_fold += 1
+            #print("CV fold: ", cv_fold)
+            #print("Train Index: ", train_index)
+            #print("Test Index: ", test_index, "\n")
             
-            trainX_data = X.loc[train_index]
-            trainy_data = y.loc[train_index]
+            #trainX_data = X.loc[train_index]
+            #trainy_data = y.loc[train_index]
             
-            testX_data = X.loc[test_index]
-            testy_data = y.loc[test_index]
+            #testX_data = X.loc[test_index]
+            #testy_data = y.loc[test_index]
             
-            # Save original 10cv folds with all features
-            train_set = pd.concat([trainX_data, trainy_data], axis=1)
-            test_set = pd.concat([testX_data, testy_data], axis=1)
+            ## Save original 10cv folds with all features
+            #train_set = pd.concat([trainX_data, trainy_data], axis=1)
+            #test_set = pd.concat([testX_data, testy_data], axis=1)
             
-            # generate a file name based on the id and record and save orig 10cv datasets
-            file_name_train = "10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
-            file_name_test = "t-10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
+            ## generate a file name based on the id and record and save orig 10cv datasets
+            #file_name_train = "10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
+            #file_name_test = "t-10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
             
-            train_set.to_csv(r'./10cv_orig/' + file_name_train, index=False, sep="\t")
-            test_set.to_csv(r'./10cv_orig/' + file_name_test, index=False, sep="\t")
-            print(model_key)
-            if ('StackedEnsemble' in model_key) is True:
-                 # Remove features that score below threshold
-                 trainX_data = trainX_data[scaled_var_imp_df.index.tolist()]
-                 # trainy_data stays the same
-                 testX_data = testX_data[scaled_var_imp_df.index.tolist()]
-            elif ('StackedEnsemble' in model_key) is False:
-                # Remove features that score below threshold
-                trainX_data = trainX_data[scaled_var_imp_df['variable']]
-                # trainy_data stays the same
-                testX_data = testX_data[scaled_var_imp_df['variable']]
-                # testy_data stays the same
+            #train_set.to_csv(r'./10cv_orig/' + file_name_train, index=False, sep="\t")
+            #test_set.to_csv(r'./10cv_orig/' + file_name_test, index=False, sep="\t")
+            #print(model_key)
+            #if ('StackedEnsemble' in model_key) is True:
+                 ## Remove features that score below threshold
+                 #trainX_data = trainX_data[scaled_var_imp_df.index.tolist()]
+                 ## trainy_data stays the same
+                 #testX_data = testX_data[scaled_var_imp_df.index.tolist()]
+            #elif ('StackedEnsemble' in model_key) is False:
+                ## Remove features that score below threshold
+                #trainX_data = trainX_data[scaled_var_imp_df['variable']]
+                ## trainy_data stays the same
+                #testX_data = testX_data[scaled_var_imp_df['variable']]
+                ## testy_data stays the same
             
-            #functionality to manually add features, eg. 'Time_min' in dissolution profiles
-            if len(include_features) > 0:
-                include_features_df_train = X.loc[train_index]
-                include_features_df_test = X.loc[test_index]
-                include_features_df_train = include_features_df_train[include_features]
-                include_features_df_test = include_features_df_test[include_features]
+            ##functionality to manually add features, eg. 'Time_min' in dissolution profiles
+            #if len(include_features) > 0:
+                #include_features_df_train = X.loc[train_index]
+                #include_features_df_test = X.loc[test_index]
+                #include_features_df_train = include_features_df_train[include_features]
+                #include_features_df_test = include_features_df_test[include_features]
                 
-                trainX_data = pd.concat([include_features_df_train, trainX_data], axis = 1)
-                testX_data = pd.concat([include_features_df_test, testX_data], axis = 1)
-                trainX_data = trainX_data.loc[:,~trainX_data.columns.duplicated()]
-                testX_data = testX_data.loc[:,~testX_data.columns.duplicated()]
+                #trainX_data = pd.concat([include_features_df_train, trainX_data], axis = 1)
+                #testX_data = pd.concat([include_features_df_test, testX_data], axis = 1)
+                #trainX_data = trainX_data.loc[:,~trainX_data.columns.duplicated()]
+                #testX_data = testX_data.loc[:,~testX_data.columns.duplicated()]
             
-            train_set = pd.concat([trainX_data, trainy_data], axis=1)
-            test_set = pd.concat([testX_data, testy_data], axis=1)
+            #train_set = pd.concat([trainX_data, trainy_data], axis=1)
+            #test_set = pd.concat([testX_data, testy_data], axis=1)
             
-            ncols=train_set.shape[1]-1
-            nrows=train_set.shape[0]
+            #ncols=train_set.shape[1]-1
+            #nrows=train_set.shape[0]
             
-            print('nrows for' + aml2_name + ' project train dataset = ',nrows)
-            print('ncols for train dataset = ',ncols)
+            #print('nrows for' + aml2_name + ' project train dataset = ',nrows)
+            #print('ncols for train dataset = ',ncols)
             
-            # save datasets after feature selection
-            file_name_train = "10cv_" + str(core_filename)+ "_FS_to_" + str(ncols) + "_in" +"_no"+str(cv_fold)+".txt"
-            file_name_test = "t-10cv_"+str(core_filename)+ "_FS_to_" + str(ncols) + "_in" +"_no"+str(cv_fold)+".txt"
+            ## save datasets after feature selection
+            #file_name_train = "10cv_" + str(core_filename)+ "_FS_to_" + str(ncols) + "_in" +"_no"+str(cv_fold)+".txt"
+            #file_name_test = "t-10cv_"+str(core_filename)+ "_FS_to_" + str(ncols) + "_in" +"_no"+str(cv_fold)+".txt"
             
-            train_set.to_csv(r'./10cv_FS/' + file_name_train, index=False, sep="\t")
-            test_set.to_csv(r'./10cv_FS/' + file_name_test, index = False, sep="\t")
-        # split loop end
+            #train_set.to_csv(r'./10cv_FS/' + file_name_train, index=False, sep="\t")
+            #test_set.to_csv(r'./10cv_FS/' + file_name_test, index = False, sep="\t")
+        ## split loop end
             
-        # Load testing data in a loop and make folds based on them 
-        # 1) List all files with pattern 't-*.txt' in ./10cv_orig
-        all_filenames = [i for i in glob.glob('./10cv_FS/t-*.txt')]
-        # 2) Sort list of filenames from 1 to 10
-        all_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
-        # 3) read all files in a list into a data_frame and make indicies for each t-file
-        df_new_approach = pd.concat([pd.read_csv(all_filenames[index], header = [0], sep = '\t', engine = 'python').assign(Fold_no=index+1) for index in range(len(all_filenames))])
+        ## Load testing data in a loop and make folds based on them 
+        ## 1) List all files with pattern 't-*.txt' in ./10cv_orig
+        #all_filenames = [i for i in glob.glob('./10cv_FS/t-*.txt')]
+        ## 2) Sort list of filenames from 1 to 10
+        #all_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
+        ## 3) read all files in a list into a data_frame and make indicies for each t-file
+        #df_new_approach = pd.concat([pd.read_csv(all_filenames[index], header = [0], sep = '\t', engine = 'python').assign(Fold_no=index+1) for index in range(len(all_filenames))])
             
-        # index of the output column
-        y_idx = df_new_approach.columns[df_new_approach.shape[1]-2]
-        training_frame = h2o.H2OFrame(df_new_approach)
+        ## index of the output column
+        #y_idx = df_new_approach.columns[df_new_approach.shape[1]-2]
+        #training_frame = h2o.H2OFrame(df_new_approach)
         
-        # assign fold column name
-        assignment_type = 'Fold_no'
+        ## assign fold column name
+        #assignment_type = 'Fold_no'
         
-        # set new AutoML options
-        aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
-                             seed = my_seed_FS_10cv,
-                             project_name = aml2_name,
-                             nfolds = no_folds,
-                             export_checkpoints_dir = str(my_export_dir),
-                             keep_cross_validation_predictions = my_keep_cross_validation_predictions,
-                             keep_cross_validation_models = my_keep_cross_validation_models,
-                             keep_cross_validation_fold_assignment = my_keep_cross_validation_fold_assignment,
-                             verbosity = 'info',
-                             sort_metric = 'RMSE')
+        ## set new AutoML options
+        #aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
+                             #seed = my_seed_FS_10cv,
+                             #project_name = aml2_name,
+                             #nfolds = no_folds,
+                             #export_checkpoints_dir = str(my_export_dir),
+                             #keep_cross_validation_predictions = my_keep_cross_validation_predictions,
+                             #keep_cross_validation_models = my_keep_cross_validation_models,
+                             #keep_cross_validation_fold_assignment = my_keep_cross_validation_fold_assignment,
+                             #verbosity = 'info',
+                             #sort_metric = 'RMSE')
         
-        # train AutoML with fold_column!
-        aml_10cv.train(y = y_idx, training_frame = training_frame, fold_column = assignment_type)
+        ## train AutoML with fold_column!
+        #aml_10cv.train(y = y_idx, training_frame = training_frame, fold_column = assignment_type)
         
-        # save h2o model
-        print('Saving leader h2o model in ./model_10cv and ./test_external')
-        my_10cv_model_path = h2o.save_model(aml_10cv.leader, path = './model_10cv')
+        ## save h2o model
+        #print('Saving leader h2o model in ./model_10cv and ./test_external')
+        #my_10cv_model_path = h2o.save_model(aml_10cv.leader, path = './model_10cv')
         
-        print('')
-        print('The final model afer k-fold cv is located at: ')
-        print(str(my_10cv_model_path))
-        print('')
+        #print('')
+        #print('The final model afer k-fold cv is located at: ')
+        #print(str(my_10cv_model_path))
+        #print('')
         
-        h2o.save_model(aml_10cv.leader, path = './test_external')
+        #h2o.save_model(aml_10cv.leader, path = './test_external')
         
-        # Download POJO or MOJO
-        if save_pojo_or_mojo is True:
-            if aml_10cv.leader.have_pojo is True:
-                aml_10cv.leader.download_pojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
-            if aml_10cv.leader.have_mojo is True:
-                aml_10cv.leader.download_mojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
-        
-        
-        # get the models id
-        model_ids = list(aml_10cv.leaderboard['model_id'].as_data_frame().iloc[:,0])
-        # get the best model
-        m = h2o.get_model(aml_10cv.leader.key)
-        print('Leader model: ')
-        print(m.key)
+        ## Download POJO or MOJO
+        #if save_pojo_or_mojo is True:
+            #if aml_10cv.leader.have_pojo is True:
+                #aml_10cv.leader.download_pojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
+            #if aml_10cv.leader.have_mojo is True:
+                #aml_10cv.leader.download_mojo(get_genmodel_jar = True, path = './pojo_or_mojo_10cv')
         
         
-        if ("StackedEnsemble" in aml_10cv.leader.key) is True:
-            # get the metalearner name
-            se_meta_model = h2o.get_model(m.metalearner()['name'])
+        ## get the models id
+        #model_ids = list(aml_10cv.leaderboard['model_id'].as_data_frame().iloc[:,0])
+        ## get the best model
+        #m = h2o.get_model(aml_10cv.leader.key)
+        #print('Leader model: ')
+        #print(m.key)
+        
+        
+        #if ("StackedEnsemble" in aml_10cv.leader.key) is True:
+            ## get the metalearner name
+            #se_meta_model = h2o.get_model(m.metalearner()['name'])
             
-            my_se_meta_model_path = h2o.save_model(se_meta_model, path = './model_10cv')
-            print('')
-            print('The meta model of the best model is located at: ')
-            print(str(my_se_meta_model_path))
-            print('')
+            #my_se_meta_model_path = h2o.save_model(se_meta_model, path = './model_10cv')
+            #print('')
+            #print('The meta model of the best model is located at: ')
+            #print(str(my_se_meta_model_path))
+            #print('')
             
-            h2o_cv_data = se_meta_model.cross_validation_holdout_predictions()
-            pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]],training_frame['Fold_no']])
+            #h2o_cv_data = se_meta_model.cross_validation_holdout_predictions()
+            #pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]],training_frame['Fold_no']])
             
-            # get a list of models - save and print out
-            model_list = []
+            ## get a list of models - save and print out
+            #model_list = []
             
-            print('Saving constituents of the StackedEnsemble')
-            for model in m.params['base_models']['actual']:
-                model_list.append(model['name'])
-                my_tmp_model_path = h2o.save_model(h2o.get_model(str(model['name'])), path = './model_10cv')
-                print(str(my_tmp_model_path))
+            #print('Saving constituents of the StackedEnsemble')
+            #for model in m.params['base_models']['actual']:
+                #model_list.append(model['name'])
+                #my_tmp_model_path = h2o.save_model(h2o.get_model(str(model['name'])), path = './model_10cv')
+                #print(str(my_tmp_model_path))
             
-            print('Stacked Ensemble model contains: ')
-            print(model_list)
+            #print('Stacked Ensemble model contains: ')
+            #print(model_list)
             
             
-        else:
-            h2o_cv_data = m.cross_validation_holdout_predictions()
-            pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]], training_frame['Fold_no']])
+        #else:
+            #h2o_cv_data = m.cross_validation_holdout_predictions()
+            #pred_obs = h2o_cv_data.cbind([training_frame[training_frame.col_names[len(training_frame.col_names)-2]], training_frame['Fold_no']])
 
 
-# ------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------
 
 
-# ----------------------------------------------
-# 
-# report in our 10cv manner
-# 
-# ----------------------------------------------
+## ----------------------------------------------
+## 
+## report in our 10cv manner
+## 
+## ----------------------------------------------
 
-# Store results in:
-pred_obs = pd.DataFrame(h2o.as_list(pred_obs))
+## Store results in:
+#pred_obs = pd.DataFrame(h2o.as_list(pred_obs))
 
-# define function to calculate R2 and RMSE based on sklearn methods r2_score() and mean_squared_error()
-def r2_rmse(g):
-    r2 = r2_score(g.iloc[:,[1]], g.iloc[:,[0]]) # r2_score is giving negative values - check/test with validation
-    rmse = np.sqrt(mean_squared_error(g.iloc[:,[1]], g.iloc[:,[0]]))
-    return pd.Series(dict(r2 = r2, rmse = rmse))
+## define function to calculate R2 and RMSE based on sklearn methods r2_score() and mean_squared_error()
+#def r2_rmse(g):
+    #r2 = r2_score(g.iloc[:,[1]], g.iloc[:,[0]]) # r2_score is giving negative values - check/test with validation
+    #rmse = np.sqrt(mean_squared_error(g.iloc[:,[1]], g.iloc[:,[0]]))
+    #return pd.Series(dict(r2 = r2, rmse = rmse))
 
-# get training and testing file names
-if perform_FS is True:
-    testing_filenames = [i for i in glob.glob('./10cv_FS/t-10cv*')]
-    traning_filenames = [i for i in glob.glob('./10cv_FS/10cv*')]
+## get training and testing file names
+#if perform_FS is True:
+    #testing_filenames = [i for i in glob.glob('./10cv_FS/t-10cv*')]
+    #traning_filenames = [i for i in glob.glob('./10cv_FS/10cv*')]
     
-elif use_classic_approach is True:
-    testing_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
-    traning_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik + '*')]
+#elif use_classic_approach is True:
+    #testing_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
+    #traning_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik + '*')]
 
-# sort training and testing files
-testing_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
-traning_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
+## sort training and testing files
+#testing_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
+#traning_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
 
-# Calculate RMSE for each fold grouped by value in column 'Fold_no'
-# and store values in r2_rmse_table
-# -----------------------------------------------------------------
-r2_rmse_table = pd.DataFrame(pred_obs.groupby('Fold_no').apply(r2_rmse).reset_index())
+## Calculate RMSE for each fold grouped by value in column 'Fold_no'
+## and store values in r2_rmse_table
+## -----------------------------------------------------------------
+#r2_rmse_table = pd.DataFrame(pred_obs.groupby('Fold_no').apply(r2_rmse).reset_index())
 
-# write data to RESULTS.txt file
+## write data to RESULTS.txt file
 
-report_file = 'RESULTS.txt'
-fd = open(report_file, 'w')
-fd.write('Report file'+'\n')
+#report_file = 'RESULTS.txt'
+#fd = open(report_file, 'w')
+#fd.write('Report file'+'\n')
        
-for row_index in range(len(r2_rmse_table.index)):
-    fd.write('Iteration '+ str(int(r2_rmse_table.iloc[row_index][0]))+'\n')
-    fd.write('Training file '+ str(traning_filenames[row_index])+'\n')
-    fd.write('Test file '+ str(testing_filenames[row_index])+'\n')
-    fd.write('RMSE = '+str(r2_rmse_table.iloc[row_index][2])+'\n')
-    fd.write('R2 = '+str(r2_rmse_table.iloc[row_index][1])+'\n')
-    tmp_pred_obs = pred_obs.loc[pred_obs['Fold_no'] == (row_index + 1)]
-    tmp_pred_obs.to_csv(fd,sep='\t')
-    fd.write(''+'\n')
+#for row_index in range(len(r2_rmse_table.index)):
+    #fd.write('Iteration '+ str(int(r2_rmse_table.iloc[row_index][0]))+'\n')
+    #fd.write('Training file '+ str(traning_filenames[row_index])+'\n')
+    #fd.write('Test file '+ str(testing_filenames[row_index])+'\n')
+    #fd.write('RMSE = '+str(r2_rmse_table.iloc[row_index][2])+'\n')
+    #fd.write('R2 = '+str(r2_rmse_table.iloc[row_index][1])+'\n')
+    #tmp_pred_obs = pred_obs.loc[pred_obs['Fold_no'] == (row_index + 1)]
+    #tmp_pred_obs.to_csv(fd,sep='\t')
+    #fd.write(''+'\n')
 
-fd.close()
+#fd.close()
 
-average_RMSE = statistics.mean(r2_rmse_table.iloc[:]['rmse'])
-average_R2 = statistics.mean(r2_rmse_table.iloc[:]['r2'])
+#average_RMSE = statistics.mean(r2_rmse_table.iloc[:]['rmse'])
+#average_R2 = statistics.mean(r2_rmse_table.iloc[:]['r2'])
 
-print('errors ',r2_rmse_table)
-print('average_RMSE = ',average_RMSE)
-print('average_R2 = ',average_R2)
-print('overall_results')
-print(pred_obs)
-overall_RMSE = np.sqrt(mean_squared_error(pred_obs.iloc[:,[1]], pred_obs.iloc[:,[0]]))
-overall_R2=r2_score(pred_obs.iloc[:,[1]], pred_obs.iloc[:,[0]])
+#print('errors ',r2_rmse_table)
+#print('average_RMSE = ',average_RMSE)
+#print('average_R2 = ',average_R2)
+#print('overall_results')
+#print(pred_obs)
+#overall_RMSE = np.sqrt(mean_squared_error(pred_obs.iloc[:,[1]], pred_obs.iloc[:,[0]]))
+#overall_R2=r2_score(pred_obs.iloc[:,[1]], pred_obs.iloc[:,[0]])
 
-fd = open(report_file,'a')
-fd.write('Average RMSE = '+'\t'+str(average_RMSE) + '\n')
-fd.write('----------------------' + '\n')
-fd.write('Average R2 = '+str(average_R2) + '\n')
-fd.write('----------------------' + '\n')
-fd.write('' + '\n')
-fd.write('----------------------' + '\n')
-fd.write('Overall data' + '\n')
-fd.write('----------------------' + '\n')
-fd.write('Overall RMSE = '+str(overall_RMSE) + '\n')
-fd.write('Overall R2 = '+str(overall_R2) + '\n')
-fd.write('------------------------' + '\n')
-pred_obs.to_csv(fd,sep='\t')
-fd.write('------------------------' + '\n')
-fd.write('END OF FILE' + '\n')
-fd.close()
+#fd = open(report_file,'a')
+#fd.write('Average RMSE = '+'\t'+str(average_RMSE) + '\n')
+#fd.write('----------------------' + '\n')
+#fd.write('Average R2 = '+str(average_R2) + '\n')
+#fd.write('----------------------' + '\n')
+#fd.write('' + '\n')
+#fd.write('----------------------' + '\n')
+#fd.write('Overall data' + '\n')
+#fd.write('----------------------' + '\n')
+#fd.write('Overall RMSE = '+str(overall_RMSE) + '\n')
+#fd.write('Overall R2 = '+str(overall_R2) + '\n')
+#fd.write('------------------------' + '\n')
+#pred_obs.to_csv(fd,sep='\t')
+#fd.write('------------------------' + '\n')
+#fd.write('END OF FILE' + '\n')
+#fd.close()
 
-# Write plain RMSE in 'short_outfile.txt'
-report_file_short='short_outfile.txt'
+## Write plain RMSE in 'short_outfile.txt'
+#report_file_short='short_outfile.txt'
 
-fd = open(report_file_short, 'w')
-fd.write(str(overall_RMSE))
-fd.close()
+#fd = open(report_file_short, 'w')
+#fd.write(str(overall_RMSE))
+#fd.close()
