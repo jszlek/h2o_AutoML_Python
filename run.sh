@@ -13,7 +13,7 @@ export TMPDIR=$my_temp
 # source anaconda and run propriate environment
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate h2o
-~/anaconda3/envs/h2o/bin/python ./h2o_Python_v15.py > log.txt 2>&1
+~/anaconda3/envs/h2o/bin/python ./h2o_Python_v16.py > log.txt 2>&1
 
 # clean ./export folder after modeling
 for f in ./export/*
