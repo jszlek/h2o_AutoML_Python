@@ -1,7 +1,7 @@
 # upper part
 
 server_multicore = True
-my_threads = 8
+my_threads = 6
 my_max_ram_allowed = 0
 my_keep_cross_validation_predictions = True
 my_keep_cross_validation_models = True
@@ -30,12 +30,12 @@ h2o_max_runtime_secs = 5*60
 
 # perfor_FS AutoML execution time
 # - only if perform_FS is True
-FS_h2o_max_runtime_secs = 1*15
-FS_h2o_max_runtime_secs_2nd_time = 5*60
+FS_h2o_max_runtime_secs = 10
+FS_h2o_max_runtime_secs_2nd_time = 1*60
 
 # How many loops of FS
 # - only if perform_FS is True
-my_FS_loops = 20
+my_FS_loops = 10
 
 # -----------------------------------------------------------
 # Perform feature selection before training AutoML in 10-fold cv
@@ -123,6 +123,7 @@ my_pojo_or_mojo_10cv = my_current_dir.joinpath(str(my_current_dir) + '/pojo_or_m
 my_model_FS = my_current_dir.joinpath(str(my_current_dir) + '/model_FS')
 my_model_10cv = my_current_dir.joinpath(str(my_current_dir) + '/model_10cv')
 
+
 # check subdirectory structure
 # ----------------------------------------
 Path(my_export_dir).mkdir(parents=True, exist_ok=True)
@@ -180,6 +181,18 @@ h2o.init(nthreads=my_threads,
 # --------------------------------------
 
 if perform_FS is True:
+    
+    # checking if my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS, my_model_10cv are empty if not delete content
+    print('/n' + 'Checking for non-empty dirs ...' + '/n')
+    checking_list = [my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS, my_model_10cv]
+    for checked_dir in checking_list:
+        if len(os.listdir(checked_dir)) > 0:
+            print('Removing files from ' + str(checked_dir) + ':')
+            files_to_remove = glob.glob(str(checked_dir.joinpath(str(checked_dir)+'/*')))
+            for f in files_to_remove:
+                print(str(f))
+                os.remove(f)
+    
     # divide between X(input) and y(output)
     # First column contains group indicies
     # Last column contains output
