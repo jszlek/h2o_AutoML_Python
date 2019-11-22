@@ -30,12 +30,12 @@ h2o_max_runtime_secs = 5*60
 
 # perfor_FS AutoML execution time
 # - only if perform_FS is True
-FS_h2o_max_runtime_secs = 10
+FS_h2o_max_runtime_secs = 15
 FS_h2o_max_runtime_secs_2nd_time = 1*60
 
 # How many loops of FS
 # - only if perform_FS is True
-my_FS_loops = 10
+my_FS_loops = 30
 
 # -----------------------------------------------------------
 # Perform feature selection before training AutoML in 10-fold cv
@@ -58,6 +58,10 @@ include_features = []
 # Feature selection threshold - range = [0; 1] - usually between 0.01 and 0.001
 # - only if perform_FS is True
 fs_threshold = 0.01
+
+# Feature selection short loop RMSE threshold
+# - only if perform_FS is True
+rmse_fs_short_loop_threshold = 15.0
 
 # Which column contains indicies to make split - 1 = 1st col, 2 = 2nd col etc. 
 # - only if perform_FS is True
@@ -183,7 +187,7 @@ h2o.init(nthreads=my_threads,
 if perform_FS is True:
     
     # checking if my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS, my_model_10cv are empty if not delete content
-    print('/n' + 'Checking for non-empty dirs ...' + '/n')
+    print('\n' + 'Checking for non-empty dirs ...' + '\n')
     checking_list = [my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS, my_model_10cv]
     for checked_dir in checking_list:
         if len(os.listdir(checked_dir)) > 0:
@@ -275,7 +279,19 @@ if perform_FS is True:
             
             print('Current best aml name: ' + str(aml_name))
             print('Current best seed: ' + str(my_random_seed_FS) + '\n')
-                    
+        
+        # if new tmp_FS_model RMSE is lower or equal has better performance overwrite it to aml
+        if tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE'] <= rmse_fs_short_loop_threshold:
+            
+            print('\n' + 'Performance of obtained model is better than set threshold: ' + '\n')
+            print('Threshold was set to: ' + str(rmse_fs_short_loop_threshold) + '\n')
+            print('Performance of obtained model is: ' + str(tmp_FS_rmse) + '\n')
+            print('Breaking the short FS loop')
+            
+            # Making no_FS_loops equal to my_FS_loops to break the while loop
+            no_FS_loops = my_FS_loops 
+            
+        
         # FS_loop counter +1
         no_FS_loops += 1
     
