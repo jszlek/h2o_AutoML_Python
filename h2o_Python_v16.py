@@ -6,9 +6,10 @@ my_max_ram_allowed = 0
 my_keep_cross_validation_predictions = True
 my_keep_cross_validation_models = True
 my_keep_cross_validation_fold_assignment = True
-skel_plik = '10cv_new_PLGA_FS_to_16_in_no' # Please provide n-fold training core filenames if use_classic_approach is True (filenames MUST contain '_no' part), copy files to ./10cv_FS
+skel_plik = '10cv_new_PLGA_FS_to_16_in_no'  # Please provide n-fold training core filenames if use_classic_approach is
+# True (filenames MUST contain '_no' part), copy files to ./10cv_FS
 skel_plik1 = 't-10cv_new_PLGA_FS_to_16_in_no' # Please provide n-fold testing core filenames if use_classic_approach is True (filenames MUST contain '_no' part), copy files to ./10cv_FS
-fs_data = 'PLGA_300in_SR_BAZA.txt' # Please provide full filename if perform_FS is True
+fs_data = 'PLGA_300in_SR_BAZA.txt' # Please provide full filename if perform_FS is True or classic_approach without n-fold cv are to be run
 
 # user specified seeds
 my_seed_FS = 1
@@ -17,7 +18,7 @@ my_seed_FS_10cv = 1
 
 # backward compatibility - if true - a classic way of training AutoML will be performed
 # YOU NEED TO COPY t-res files into ./10cv_FS folder - folds have to numbered t-res*no1.txt, t-res*no2.txt etc. every file must have header in first row!
-use_classic_approach: bool = False
+use_classic_approach: bool = True
 
 # save pojo or mojo model boolean = True/False
 save_pojo_or_mojo: bool = True
@@ -25,8 +26,14 @@ save_pojo_or_mojo: bool = True
 # How many fold in cross validation is used only if perform_FS is True
 no_folds = 10
 
-# classic AutoML execution time
-h2o_max_runtime_secs = 5*60
+# 10cv AutoML execution time
+# Refers to classic_approach and perform_FS
+h2o_max_runtime_secs_10cv = 15
+h2o_max_runtime_secs_2nd_time_10cv = 5*60
+
+# How many short loops of 10cv
+# - only if perform_FS is True
+my_10cv_loops = 30
 
 # perfor_FS AutoML execution time
 # - only if perform_FS is True
@@ -42,7 +49,7 @@ my_FS_loops = 30
 # Options:
 
 # Main option True/False
-perform_FS: bool = True
+perform_FS: bool = False
 
 # Scale by original score or rmse - this is only for comparison with fscaret - set False to scale by the RMSE
 # - only if perform_FS is True
@@ -62,6 +69,10 @@ fs_threshold = 0.01
 # Feature selection short loop RMSE threshold
 # - only if perform_FS is True
 rmse_fs_short_loop_threshold = 15.0
+
+# 10-cv short loop RMSE threshold
+# - only if perform_FS is True
+rmse_10cv_short_loop_threshold = 15.0
 
 # Which column contains indicies to make split - 1 = 1st col, 2 = 2nd col etc. 
 # - only if perform_FS is True
@@ -96,6 +107,7 @@ from sklearn.metrics import mean_squared_error,r2_score
 from sklearn.model_selection import GroupKFold # import KFold
 from sklearn import preprocessing
 import matplotlib
+import re
 # Force matplotlib to not use any X window backend
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -411,7 +423,7 @@ if perform_FS is True:
             rmse_sum = rmse_df.sum()[0]
             rmse_scale = rmse_sum / rmse_df
             
-            x = rmse_scale.values #returns a numpy array
+            x = rmse_scale.values  # returns a numpy array
             min_max_scaler = preprocessing.MinMaxScaler()
             x_scaled = min_max_scaler.fit_transform(x)
             rmse_scale = pd.DataFrame(x_scaled)
@@ -460,9 +472,93 @@ if perform_FS is True:
 # ----------------------------------------------------
 
 if use_classic_approach is True and perform_FS is False:
-    # Load testing data in a loop and make folds based on them 
+
+    # checking if my_10cv_FS_dir or my_10cv_orig_dir has train/test 10cv pairs
+    print('\n' + 'Checking for non-empty dir (' + str(my_10cv_FS_dir) + ')' + '\n')
+
+# General if-else statement to check dir if it contains t-* files
+    if len(os.listdir(my_10cv_FS_dir)) > 0:
+        for file_idx in os.listdir(my_10cv_FS_dir):
+            m = bool(re.match(r"t-[0-9][A-Z]*", file_idx))
+            if m is True:
+                print('File ' + str(file_idx) + ' will be used for creating 10cv')
+    else:
+        print('t-*.txt files were not found in' + str(my_10cv_FS_dir) + '. Using original data and making n-fold cv ...')
+
+        # divide between X(input) and y(output)
+        # First column contains group indicies
+        # Last column contains output
+        ncols = data.shape[1] - 1
+        nrows = data.shape[0]
+
+        X = data.drop(data.columns[[0, ncols]], axis=1)
+        y = data[data.columns[ncols]]
+
+        # needed to make cv by groups - first column contains indicies!
+        groups = data[data.columns[[index_column - 1]]]
+
+        # Define how many fold there will be
+        gkf = GroupKFold(n_splits=no_folds)
+        cv_fold = 0
+
+        for train_index, test_index in gkf.split(X, y, groups=groups):
+            cv_fold += 1
+            print("CV fold: ", cv_fold)
+            print("Train Index: ", train_index)
+            print("Test Index: ", test_index, "\n")
+
+            trainX_data = X.loc[train_index]
+            trainy_data = y.loc[train_index]
+
+            testX_data = X.loc[test_index]
+            testy_data = y.loc[test_index]
+
+            # Save original 10cv folds with all features
+            train_set = pd.concat([trainX_data, trainy_data], axis=1)
+            test_set = pd.concat([testX_data, testy_data], axis=1)
+
+            # generate a file name based on the id and record and save orig 10cv datasets
+            file_name_train = "10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
+            file_name_test = "t-10cv_orig_" + str(core_filename) + "_no" + str(cv_fold) + ".txt"
+
+            train_set.to_csv(r'./10cv_orig/' + file_name_train, index=False, sep="\t")
+            test_set.to_csv(r'./10cv_orig/' + file_name_test, index=False, sep="\t")
+
+            # functionality to manually add features, eg. 'Time_min' in dissolution profiles
+            if len(include_features) > 0:
+                include_features_df_train = X.loc[train_index]
+                include_features_df_test = X.loc[test_index]
+                include_features_df_train = include_features_df_train[include_features]
+                include_features_df_test = include_features_df_test[include_features]
+
+                trainX_data = pd.concat([include_features_df_train, trainX_data], axis=1)
+                testX_data = pd.concat([include_features_df_test, testX_data], axis=1)
+                trainX_data = trainX_data.loc[:, ~trainX_data.columns.duplicated()]
+                testX_data = testX_data.loc[:, ~testX_data.columns.duplicated()]
+
+            train_set = pd.concat([trainX_data, trainy_data], axis=1)
+            test_set = pd.concat([testX_data, testy_data], axis=1)
+
+            ncols = train_set.shape[1] - 1
+            nrows = train_set.shape[0]
+
+            print('nrows for' + aml2_name + ' project train dataset = ', nrows)
+            print('ncols for train dataset = ', ncols)
+
+            # save datasets
+            file_name_train = "10cv_" + str(core_filename) + str(ncols) + "_in" + "_no" + str(
+                cv_fold) + ".txt"
+            file_name_test = "t-10cv_" + str(core_filename) + str(ncols) + "_in" + "_no" + str(
+                cv_fold) + ".txt"
+
+            train_set.to_csv(r'./10cv_FS/' + file_name_train, index=False, sep="\t")
+            test_set.to_csv(r'./10cv_FS/' + file_name_test, index=False, sep="\t")
+        # split loop end
+
+
+    # Load testing data in a loop and make folds based on them
     # 1) List all files with pattern 't-*.txt' in ./10cv_FS
-    all_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
+    all_filenames = [i for i in glob.glob('./10cv_FS/' + 't-10cv_' + '*')]
     
     # 2) Sort list of filenames from 1 to 10
     all_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
@@ -479,7 +575,7 @@ if use_classic_approach is True and perform_FS is False:
     assignment_type = 'Fold_no'
     
     # set new AutoML options
-    aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
+    aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs_2nd_time_10cv,
                          seed = my_seed_classic_approach,
                          project_name = aml2_name,
                          nfolds = no_folds,
@@ -599,7 +695,7 @@ if use_classic_approach is False and perform_FS is True:
                 testX_data = testX_data[scaled_var_imp_df['variable']]
                 # testy_data stays the same
             
-            #functionality to manually add features, eg. 'Time_min' in dissolution profiles
+            # functionality to manually add features, eg. 'Time_min' in dissolution profiles
             if len(include_features) > 0:
                 include_features_df_train = X.loc[train_index]
                 include_features_df_test = X.loc[test_index]
@@ -644,7 +740,7 @@ if use_classic_approach is False and perform_FS is True:
         assignment_type = 'Fold_no'
         
         # set new AutoML options
-        aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs,
+        aml_10cv = H2OAutoML(max_runtime_secs = h2o_max_runtime_secs_2nd_time_10cv,
                              seed = my_seed_FS_10cv,
                              project_name = aml2_name,
                              nfolds = no_folds,
@@ -740,8 +836,8 @@ if perform_FS is True:
     traning_filenames = [i for i in glob.glob('./10cv_FS/10cv*')]
     
 elif use_classic_approach is True:
-    testing_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik1 + '*')]
-    traning_filenames = [i for i in glob.glob('./10cv_FS/' + skel_plik + '*')]
+    testing_filenames = [i for i in glob.glob('./10cv_FS/' + 't-' + '*')]
+    traning_filenames = [i for i in glob.glob('./10cv_FS/' + 't-' + '*')]
 
 # sort training and testing files
 testing_filenames.sort(key = lambda x: int(x.split('_no')[1].split('.')[0]))
