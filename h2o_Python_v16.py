@@ -292,16 +292,16 @@ if perform_FS is True:
             print('Current best aml name: ' + str(aml_name))
             print('Current best seed: ' + str(my_random_seed_FS) + '\n')
         
-        # if new tmp_FS_model RMSE is lower or equal has better performance overwrite it to aml
-        if tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE'] <= rmse_fs_short_loop_threshold:
-            
-            print('\n' + 'Performance of obtained model is better than set threshold: ' + '\n')
-            print('Threshold was set to: ' + str(rmse_fs_short_loop_threshold) + '\n')
-            print('Performance of obtained model is: ' + str(tmp_FS_rmse) + '\n')
-            print('Breaking the short FS loop')
-            
-            # Making no_FS_loops equal to my_FS_loops to break the while loop
-            no_FS_loops = my_FS_loops 
+            # if new tmp_FS_model RMSE is lower or equal has better performance overwrite it to aml
+            if tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE'] <= rmse_fs_short_loop_threshold:
+
+                print('\n' + 'Performance of obtained model is better than set threshold: ' + '\n')
+                print('Threshold was set to: ' + str(rmse_fs_short_loop_threshold) + '\n')
+                print('Performance of obtained model is: ' + str(tmp_FS_rmse) + '\n')
+                print('Breaking the short FS loop')
+
+                # Making no_FS_loops equal to my_FS_loops to break the while loop
+                no_FS_loops = my_FS_loops 
             
         
         # FS_loop counter +1
