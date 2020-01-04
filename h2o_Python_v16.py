@@ -264,6 +264,8 @@ if perform_FS is True:
         # write first model rmse metrics
         if no_FS_loops is 1:
             tmp_FS_rmse = tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE']
+            aml_name = tmp_aml_name
+            my_random_seed_FS = tmp_my_random_seed_FS
         
         # print out RMSE for the model
         print('\n' + 'RMSE for FS loop no: ' + str(no_FS_loops) + ' is ' + str(tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE']) + '\n')
