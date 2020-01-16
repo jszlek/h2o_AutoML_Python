@@ -26,3 +26,7 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with this program.
 If not, see <http://www.gnu.org/licenses/>.
 
+Notice!
+The most of the code is described at: https://nbviewer.jupyter.org/github/jszlek/tmp_notebook/blob/master/h2o_PLGA_case.ipynb
+
+
