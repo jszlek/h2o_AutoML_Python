@@ -271,7 +271,7 @@ if perform_FS is True:
         print('\n' + 'RMSE for FS loop no: ' + str(no_FS_loops) + ' is ' + str(tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE']) + '\n')
         
         # if new tmp_FS_model has better performance overwrite it to aml
-        if tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE'] < tmp_FS_rmse:
+        if tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE'] <= tmp_FS_rmse:
             
             # overwrite rmse for the tmp_FS_model - the leader
             tmp_FS_rmse = tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE']
