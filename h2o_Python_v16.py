@@ -456,7 +456,7 @@ if perform_FS is True:
         
         # scale column 'Total' from 0 to 1
         min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
-        scaled_var_imp_df.loc[:,'Total'] = min_max_scaler.fit_transform(scaled_var_imp_df.loc[:,'Total'])
+        scaled_var_imp_df.loc[:,'Total'] = min_max_scaler.fit_transform(scaled_var_imp_df.loc[:,'Total'].values.reshape(-1,1))
         
         # Drop variables by a fs_threshold condition
         scaled_var_imp_df = scaled_var_imp_df[scaled_var_imp_df.Total > fs_threshold]
