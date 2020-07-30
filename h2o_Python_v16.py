@@ -370,9 +370,14 @@ if perform_FS is True:
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
         # Make additional column with original column idexes
-        orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
-        scaled_var_imp_df_sorted['Orig column'] = orig_column_list
+        orig_column_list = list()
         
+        for i in scaled_var_imp_df_sorted.index:
+            orig_column_list.append(data.columns.get_loc(i)+1)
+        
+        # orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
+        scaled_var_imp_df_sorted['Orig column'] = orig_column_list
+
         # Save Feature Selection table to csv
         if save_FS_table is True:
             scaled_var_imp_df_sorted[['scaled_importance', 'Orig column']].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
@@ -481,7 +486,12 @@ if perform_FS is True:
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
         # Make additional column with original column idexes
-        orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
+        orig_column_list = list()
+        
+        for i in scaled_var_imp_df_sorted.index:
+            orig_column_list.append(data.columns.get_loc(i)+1)
+        
+        # orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
         scaled_var_imp_df_sorted['Orig column'] = orig_column_list
         
         # Feature Selection table save to csv
