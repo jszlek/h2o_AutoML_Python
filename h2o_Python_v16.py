@@ -362,6 +362,9 @@ if perform_FS is True:
 
         # Sort by 'scaled_importance' values
         scaled_var_imp_df_sorted = scaled_var_imp_df.sort_values(by=['scaled_importance'], ascending=False)
+        
+        # Set scaled_var_imp_df_sorted an index of column 'variable'
+        scaled_var_imp_df_sorted = scaled_var_imp_df_sorted.set_index('variable', drop = False)
 
         # Plot and save bar chart
         plt.rcParams['xtick.labelsize'] = 4
