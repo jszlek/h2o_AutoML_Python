@@ -369,9 +369,13 @@ if perform_FS is True:
         plt.tight_layout()
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
+        # Make additional column with original column idexes
+        orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
+        scaled_var_imp_df_sorted['Orig column'] = orig_column_list
+        
         # Save Feature Selection table to csv
         if save_FS_table is True:
-            scaled_var_imp_df_sorted['scaled_importance'].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
+            scaled_var_imp_df_sorted[['scaled_importance', 'Orig column']].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
 
     else:
         model_ids = list(aml.leaderboard['model_id'].as_data_frame().iloc[:, 0])
@@ -476,9 +480,13 @@ if perform_FS is True:
         plt.tight_layout()
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
+        # Make additional column with original column idexes
+        orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
+        scaled_var_imp_df_sorted['Orig column'] = orig_column_list
+        
         # Feature Selection table save to csv
         if save_FS_table is True:
-            scaled_var_imp_df_sorted['Total'].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
+            scaled_var_imp_df_sorted[['Total', 'Orig column']].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
 
 # --------------------------------------------------------------
 
