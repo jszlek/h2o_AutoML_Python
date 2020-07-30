@@ -51,6 +51,9 @@ my_FS_loops: int = 10
 # Main option True/False
 perform_FS: bool = True
 
+# Save Feature Selection table as csv
+save_FS_table: bool = True
+
 # Scale by original score or rmse - this is only for comparison with fscaret - set False to scale by the RMSE
 # - only if perform_FS is True
 original_scale: bool = True
@@ -365,7 +368,10 @@ if perform_FS is True:
         ax = scaled_var_imp_df_sorted.plot.bar(y='scaled_importance', x='variable', rot=90)
         plt.tight_layout()
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
-
+        
+        # Save Feature Selection table to csv
+        if save_FS_table is True:
+            scaled_var_imp_df_sorted['scaled_importance'].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
 
     else:
         model_ids = list(aml.leaderboard['model_id'].as_data_frame().iloc[:, 0])
@@ -469,6 +475,10 @@ if perform_FS is True:
         ax = scaled_var_imp_df_sorted.plot.bar(y='Total', rot=90)
         plt.tight_layout()
         plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
+        
+        # Feature Selection table save to csv
+        if save_FS_table is True:
+            scaled_var_imp_df_sorted['Total'].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
 
 # --------------------------------------------------------------
 
@@ -820,7 +830,7 @@ if use_classic_approach is False and perform_FS is True:
                 # get cross validation results
                 current_leader = current_aml_10cv.leader.cross_validation_metrics_summary()
                 # get 10cv RMSE from the leader
-                current_rmse_10cv = float(current_leader.as_data_frame()['mean'][5])
+                current_rmse_10cv = float(current_leader['mean'][5])
 
             if my_10cv_loops_counter == 1:
                 my_random_seed_10cv = current_my_random_seed_10cv
