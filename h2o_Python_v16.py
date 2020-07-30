@@ -154,14 +154,14 @@ Path(my_model_10cv).mkdir(parents=True, exist_ok=True)
 # check runtime mode - either many servers on the machine (server_multicore = F) or one server per one machine (server_multicore = T)
 # -------------------------------------------
 if server_multicore is True:
-    my_cores = 1
+    my_cores = 1.5
 else:
     my_cores = psutil.cpu_count()
 
 # check system free mem and apply it to the server
 # ------------------------------------------------
 memfree = psutil.virtual_memory().total
-memfree_g = int(round(memfree / 1024 / 1024 / 1024 / my_cores, 3))
+memfree_g = int(round(memfree / 1024 / 1024 / 1024 / my_cores))
 
 if memfree_g < 2:
     memfree_g = 2
