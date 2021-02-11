@@ -115,7 +115,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 # Read dataset for FS
-data = pd.read_csv(fs_data, sep='\t', engine='python')
+if perform_FS is True:
+    data = pd.read_csv(fs_data, sep='\t', engine='python')
 
 # -------------------------------
 # Random key generator - function
