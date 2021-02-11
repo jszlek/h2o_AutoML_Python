@@ -614,6 +614,9 @@ if use_classic_approach is True and perform_FS is False:
 
     # assign fold column name
     assignment_type = 'Fold_no'
+    
+    # random init seed
+    my_seed_classic_approach = random.randint(1, 100000000)
 
     # set new AutoML options
     aml_10cv = H2OAutoML(max_runtime_secs=h2o_max_runtime_secs_2nd_time_10cv,
