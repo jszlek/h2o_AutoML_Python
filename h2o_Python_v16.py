@@ -263,7 +263,7 @@ if perform_FS is True:
         tmp_FS_model.train(y=tmp_y_idx, training_frame=tmp_training_frame, leaderboard_frame=tmp_testing_frame)
 
         # write first model rmse metrics
-        if no_FS_loops is 1:
+        if no_FS_loops == 1:
             tmp_FS_rmse = tmp_FS_model.leader.model_performance(tmp_testing_frame)['RMSE']
             aml_name = tmp_aml_name
             my_random_seed_FS = tmp_my_random_seed_FS
@@ -357,20 +357,11 @@ if perform_FS is True:
         varimp_df = aml.leader.varimp(use_pandas=True).iloc[:, [0, 2]]
         scaled_var_imp_df = varimp_df
 
-        # Drop variables by a fs_threshold condition
-        scaled_var_imp_df = scaled_var_imp_df[scaled_var_imp_df.scaled_importance > fs_threshold]
-
         # Sort by 'scaled_importance' values
         scaled_var_imp_df_sorted = scaled_var_imp_df.sort_values(by=['scaled_importance'], ascending=False)
         
         # Set scaled_var_imp_df_sorted an index of column 'variable'
         scaled_var_imp_df_sorted = scaled_var_imp_df_sorted.set_index('variable', drop = False)
-
-        # Plot and save bar chart
-        plt.rcParams['xtick.labelsize'] = 4
-        ax = scaled_var_imp_df_sorted.plot.bar(y='scaled_importance', x='variable', rot=90)
-        plt.tight_layout()
-        plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
         # Make additional column with original column idexes
         orig_column_list = list()
@@ -380,10 +371,19 @@ if perform_FS is True:
         
         # orig_column_list = [(data.columns.get_loc(i)+1) for i in scaled_var_imp_df_sorted.index]
         scaled_var_imp_df_sorted['Orig column'] = orig_column_list
-
+        
         # Save Feature Selection table to csv
         if save_FS_table is True:
             scaled_var_imp_df_sorted[['scaled_importance', 'Orig column']].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
+
+        # Drop variables by a fs_threshold condition
+        scaled_var_imp_df_sorted = scaled_var_imp_df_sorted[scaled_var_imp_df_sorted.scaled_importance > fs_threshold]
+        
+        # Plot and save bar chart
+        plt.rcParams['xtick.labelsize'] = 4
+        ax = scaled_var_imp_df_sorted.plot.bar(y='scaled_importance', x='variable', rot=90)
+        plt.tight_layout()
+        plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
 
     else:
         model_ids = list(aml.leaderboard['model_id'].as_data_frame().iloc[:, 0])
@@ -476,17 +476,8 @@ if perform_FS is True:
         min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
         scaled_var_imp_df.loc[:,'Total'] = min_max_scaler.fit_transform(scaled_var_imp_df.loc[:,'Total'].values.reshape(-1,1))
 
-        # Drop variables by a fs_threshold condition
-        scaled_var_imp_df = scaled_var_imp_df[scaled_var_imp_df.Total > fs_threshold]
-
         # Sort by 'Total' values
         scaled_var_imp_df_sorted = scaled_var_imp_df.sort_values(by=['Total'], ascending=False)
-
-        # Plot and save bar chart
-        plt.rcParams['xtick.labelsize'] = 4
-        ax = scaled_var_imp_df_sorted.plot.bar(y='Total', rot=90)
-        plt.tight_layout()
-        plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
         
         # Make additional column with original column idexes
         orig_column_list = list()
@@ -500,6 +491,16 @@ if perform_FS is True:
         # Feature Selection table save to csv
         if save_FS_table is True:
             scaled_var_imp_df_sorted[['Total', 'Orig column']].to_csv('Feature_selection_table.csv', index = True, sep = '\t')
+        
+        # Drop variables by a fs_threshold condition
+        scaled_var_imp_df_sorted = scaled_var_imp_df_sorted[scaled_var_imp_df_sorted.Total > fs_threshold]
+
+        # Plot and save bar chart
+        plt.rcParams['xtick.labelsize'] = 4
+        ax = scaled_var_imp_df_sorted.plot.bar(y='Total', rot=90)
+        plt.tight_layout()
+        plt.savefig('FS_result_h2o.pdf', format='pdf', dpi=1200)
+       
 
 # --------------------------------------------------------------
 
@@ -595,7 +596,7 @@ if use_classic_approach is True and perform_FS is False:
 
     # Load testing data in a loop and make folds based on them
     # 1) List all files with pattern 't-*.txt' in ./10cv_FS
-    all_filenames = [i for i in glob.glob('./10cv_FS/' + 't-10cv_' + '*')]
+    all_filenames = [i for i in glob.glob('./10cv_FS/' + 't-' + '*')]
 
     # 2) Sort list of filenames from 1 to 10
     all_filenames.sort(key=lambda x: int(x.split('_no')[1].split('.')[0]))
@@ -765,14 +766,14 @@ if use_classic_approach is False and perform_FS is True:
                 print(model_key)
                 if ('StackedEnsemble' in model_key) is True:
                     # Remove features that score below threshold
-                    current_trainX_data = current_trainX_data[scaled_var_imp_df.index.tolist()]
+                    current_trainX_data = current_trainX_data[scaled_var_imp_df_sorted.index.tolist()]
                     # trainy_data stays the same
-                    current_testX_data = current_testX_data[scaled_var_imp_df.index.tolist()]
+                    current_testX_data = current_testX_data[scaled_var_imp_df_sorted.index.tolist()]
                 elif ('StackedEnsemble' in model_key) is False:
                     # Remove features that score below threshold
-                    current_trainX_data = current_trainX_data[scaled_var_imp_df['variable']]
+                    current_trainX_data = current_trainX_data[scaled_var_imp_df_sorted['variable']]
                     # trainy_data stays the same
-                    current_testX_data = current_testX_data[scaled_var_imp_df['variable']]
+                    current_testX_data = current_testX_data[scaled_var_imp_df_sorted['variable']]
                     # testy_data stays the same
 
                 # functionality to manually add features, eg. 'Time_min' in dissolution profiles
@@ -844,10 +845,10 @@ if use_classic_approach is False and perform_FS is True:
 
             # check for stackedensemble models
             if 'StackedEnsemble' in current_aml_10cv.leader.model_id:
-                metalerner_model = current_aml_10cv.leader.metalearner()
-                meta_10cv = h2o.get_model(metalerner_model['name'])
+                metalearner_model = current_aml_10cv.leader.metalearner()
+                meta_10cv = h2o.get_model(metalearner_model.model_id)
                 current_rmse_10cv = float(meta_10cv.cross_validation_metrics_summary()['mean'][6])
-            elif 'StackedEnsemble' is not current_aml_10cv.leader.model_id:
+            elif 'StackedEnsemble' != current_aml_10cv.leader.model_id:
                 # get cross validation results
                 current_leader = current_aml_10cv.leader.cross_validation_metrics_summary()
                 # get 10cv RMSE from the leader
