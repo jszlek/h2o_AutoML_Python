@@ -1,7 +1,7 @@
 # upper part
 
 server_multicore = True
-my_threads = 4
+my_threads = 3
 my_max_ram_allowed = 8
 my_keep_cross_validation_predictions = True
 my_keep_cross_validation_models = True
@@ -32,7 +32,7 @@ no_folds = 10
 # perform_FS AutoML execution time
 # - only if perform_FS is True
 FS_h2o_max_runtime_secs = 40
-FS_h2o_max_runtime_secs_2nd_time = 5*60
+FS_h2o_max_runtime_secs_2nd_time = 2*60
 
 # How many loops of FS
 # - only if perform_FS is True
@@ -40,8 +40,8 @@ my_FS_loops: int = 10
 
 # 10cv AutoML execution time
 # Refers to classic_approach and perform_FS
-h2o_max_runtime_secs_10cv = 60
-h2o_max_runtime_secs_2nd_time_10cv = 10*60
+h2o_max_runtime_secs_10cv = 40
+h2o_max_runtime_secs_2nd_time_10cv = 2*60
 
 # How many short loops of 10cv
 # - only if perform_FS is True
@@ -227,27 +227,29 @@ if perform_FS is True:
 
     # Define FS_loops counter
     no_FS_loops = 1
+    
+    if my_random_seed_FS != None:
+        # print out no of loop
+        print('Feature selection seed was set to: ' +'\n')
+        print(str(my_random_seed_FS) + '\n')
+        print('Omitting loop mode' + '\n')
+        
+        # overwrite my_FS_loops and set tmp_my_random_seed to my_random_seed
+        my_FS_loops = no_FS_loops
+        tmp_my_random_seed_FS = my_random_seed_FS
+        tmp_aml_name = 'A' + random_key_generator(15)
+        
+    elif my_random_seed_FS == None:
+        # if my_random_seed_FS is None initialize tmp seed and project name
+        tmp_my_random_seed_FS = random.randint(1, 100000000)
+        tmp_aml_name = 'A' + random_key_generator(15)
 
     # the counter is set from 1, therefore = my_FS_loops + 1
     while no_FS_loops < (my_FS_loops + 1):
-
-        if my_random_seed_FS == None:
-            # print out no of loop
-            print('\n' + 'Starting FS loop no: ' + str(no_FS_loops) + '\n')
-            tmp_my_random_seed_FS = random.randint(1, 100000000)
-            print('Temp random seed: ' + str(tmp_my_random_seed_FS) + '\n')
-            tmp_aml_name = 'A' + random_key_generator(15)
-
-        elif my_random_seed_FS != None:
-            # print out no of loop
-            print('Feature selection seed was set to: ' +'\n')
-            print(str(my_random_seed_FS) + '\n')
-            print('Omitting loop mode' + '\n')
-
-            my_FS_loops = no_FS_loops
-            tmp_my_random_seed_FS = my_random_seed_FS
-            tmp_aml_name = 'A' + random_key_generator(15)
-
+        # print out no of loop
+        print('\n' + 'Starting FS loop no: ' + str(no_FS_loops) + '\n')
+        print('Temp random seed: ' + str(tmp_my_random_seed_FS) + '\n')
+        
         # split on train - test dataset by group 'Formulation no' - this is for Feature Selection
         tmp_train_inds, tmp_test_inds = next(
             GroupShuffleSplit(n_splits=1, train_size=0.7, test_size=0.3, random_state=tmp_my_random_seed_FS).split(X, groups=groups))
@@ -321,8 +323,12 @@ if perform_FS is True:
             # Making no_FS_loops equal to my_FS_loops to break the while loop
             no_FS_loops = my_FS_loops
 
-            # FS_loop counter +1
+        # FS_loop counter +1
         no_FS_loops += 1
+        
+        # Create new set of seeds
+        tmp_aml_name = 'A' + random_key_generator(15)
+        tmp_my_random_seed_FS = random.randint(1, 100000000)
 
     # Once again perform FS on 'the best' train / test dataset, but this time for much longer
 
@@ -727,29 +733,30 @@ if use_classic_approach is False and perform_FS is True:
 
     if my_10cv_loops > 0:
         my_10cv_loops_counter: int = 0
-
+        
+        if my_random_seed_10cv != None:
+            # Print out some info about no of loops and names of the project etc.
+            print('Seed of 10cv was set to: ' + '\n')
+            print(str(my_random_seed_10cv) + '\n')
+            current_aml_10cv_name = 'A' + random_key_generator(15)
+            print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
+            
+            # overwrite current seed to my random seed
+            current_my_random_seed_10cv = my_random_seed_10cv
+            my_10cv_loops_counter = my_10cv_loops
+        
+        elif my_random_seed_10cv == None:
+            # If my_random_seed_10cv is None initialize seed and project name
+            current_my_random_seed_10cv = random.randint(1, 100000000)
+            current_aml_10cv_name = 'A' + random_key_generator(15)
+            
         while my_10cv_loops_counter < my_10cv_loops:
-
             my_10cv_loops_counter += 1
-
-            if my_random_seed_10cv == None:
-                 # Print out some info about no of loops and names of the project etc.
-                print("10cv loop: ", my_10cv_loops_counter, "\n")
-                current_my_random_seed_10cv = random.randint(1, 100000000)
-                print('Current random seed: ' + str(current_my_random_seed_10cv) + '\n')
-                current_aml_10cv_name = 'A' + random_key_generator(15)
-                print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
-
-            elif my_random_seed_10cv != None:
-                 # Print out some info about no of loops and names of the project etc.
-                print('Seed of 10cv was set to: ' + '\n')
-                print(str(my_random_seed_10cv) + '\n')
-                
-                current_aml_10cv_name = 'A' + random_key_generator(15)
-                print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
-                
-                current_my_random_seed_10cv = my_random_seed_10cv
-                my_10cv_loops_counter = my_10cv_loops
+            
+            # Print out some info about no of loops and names of the project etc.
+            print("10cv loop: ", my_10cv_loops_counter, "\n")
+            print('Current random seed: ' + str(current_my_random_seed_10cv) + '\n')
+            print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
 
             # make random shuffle by group -----------------------
             
@@ -940,6 +947,10 @@ if use_classic_approach is False and perform_FS is True:
 
                 # Making  my_10cv_loops_counter = my_10cv_loops equal              
                 my_10cv_loops_counter = my_10cv_loops
+                
+            # Create new set of seeds
+            current_aml_10cv_name = 'A' + random_key_generator(15)
+            current_my_random_seed_10cv = random.randint(1, 100000000)
 
         # remove *current* files
         for filename in glob.glob('./10cv_FS/*current*'):
