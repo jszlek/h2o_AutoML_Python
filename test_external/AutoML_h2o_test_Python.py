@@ -2,8 +2,8 @@
 # AutoML h2o script for testing model on external data
 #
 
-automl_model_name = 'StackedEnsemble_BestOfFamily_AutoML_20191030_225608'                  # h2o model name
-test_DF = '10cv_new_PLGA_FS_to_23_in_test.csv'                                               # testing data frame
+automl_model_name = 'GBM_1_AutoML_20210217_124842'                  # h2o model name
+test_DF = '10cv_new_PLGA_FS_to_7_in_no1.csv'                                               # testing data frame
 
 classification_problem: bool = False
 run_regression_for_classification: bool = False
@@ -83,10 +83,22 @@ print('Algorithm: ' + aml3.algo)
 print('Type: ' + aml3.type)
 print('Run time [s]: ' + str(aml3.run_time))
 print('Seed: ' + str(aml3.seed))
-print('RMSE: ' + str(aml3.rmse()))
-print('MSE: ' + str(aml3.mse()))
-print('R2: ' + str(aml3.r2()))
-print('AIC: ' + str(aml3.aic()))
+
+if aml3.rmse() != None:
+    print('RMSE: ' + str(aml3.rmse()))
+elif aml3.rmse() == None:
+    print('RMSE: ' + 'None')
+
+if aml3.mse() != None:
+    print('MSE: ' + str(aml3.mse()))
+elif aml3.mse() == None:
+    print('MSE: ' + 'None')
+    
+if aml3.r2() != None:
+    print('R2: ' + str(aml3.r2()))
+elif aml3.r2() == None:
+    print('R2: ' + 'None')
+    
 print('-------------')
 
 
@@ -95,9 +107,9 @@ aml3.summary()
 if ('stackedensemble' in aml3.algo) is True:
     
     print('Metalearner name: ')
-    print(aml3.metalearner()['name'], '\n')
+    print(aml3.metalearner().model_id, '\n')
     print('Metalearner algorithm: ')
-    meta = h2o.get_model(aml3.metalearner()['name'])
+    meta = h2o.get_model(aml3.metalearner().model_id)
     print(meta.algo, '\n')
     print('Ensemble contains models: ')
     
