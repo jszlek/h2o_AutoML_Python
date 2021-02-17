@@ -911,20 +911,22 @@ if use_classic_approach is False and perform_FS is True:
                 for filename in glob.glob('./10cv_orig/*current*'):
                     new_name = re.sub("current_", "", filename)
                     os.rename(filename, new_name)
-                    
-            elif my_random_seed_10cv != None:
-                my_random_seed_10cv = current_my_random_seed_10cv
-                aml_10cv_name = current_aml_10cv_name
-                best_rmse_10cv = current_rmse_10cv
-                # rename *current* files
-                for filename in glob.glob('./10cv_FS/*current*'):
-                    new_name = re.sub("current_", "", filename)
-                    os.rename(filename, new_name)
 
-                for filename in glob.glob('./10cv_orig/*current*'):
-                    new_name = re.sub("current_", "", filename)
-                    os.rename(filename, new_name)
-                
+# Below code propably is a cause of bug
+# need to investigate - for now it is commented
+# 
+#            elif my_random_seed_10cv != None:
+#                my_random_seed_10cv = current_my_random_seed_10cv
+#                aml_10cv_name = current_aml_10cv_name
+#                best_rmse_10cv = current_rmse_10cv
+#                # rename *current* files
+#                for filename in glob.glob('./10cv_FS/*current*'):
+#                    new_name = re.sub("current_", "", filename)
+#                    os.rename(filename, new_name)
+#
+#                for filename in glob.glob('./10cv_orig/*current*'):
+#                    new_name = re.sub("current_", "", filename)
+#                    os.rename(filename, new_name)                
 
             if best_rmse_10cv >= current_rmse_10cv:
                 my_random_seed_10cv = current_my_random_seed_10cv
