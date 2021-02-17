@@ -1,208 +1,368 @@
-Checking whether there is an H2O instance running at http://localhost:61071 ..... not found.
+Checking whether there is an H2O instance running at http://localhost:61077 ..... not found.
 Attempting to start a local H2O server...
-  Java Version: Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/export; openjdk version "1.8.0_222"; OpenJDK Runtime Environment (IcedTea 3.13.0) (build 1.8.0_222-b10 suse-lp150.2.19.1-x86_64); OpenJDK 64-Bit Server VM (build 25.222-b10, mixed mode)
-  Starting server from /home/kuba/anaconda3/envs/h2o/lib/python3.6/site-packages/h2o/backend/bin/h2o.jar
-  Ice root: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/export
-  JVM stdout: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/export/tmpyb9snsoz/h2o_kuba_started_from_python.out
-  JVM stderr: /home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/export/tmpyb9snsoz/h2o_kuba_started_from_python.err
-  Server is running at http://127.0.0.1:61071
-Connecting to H2O server at http://127.0.0.1:61071 ... successful.
+  Java Version: Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/export; openjdk version "1.8.0_275"; OpenJDK Runtime Environment (IcedTea 3.17.1) (build 1.8.0_275-b01 suse-lp152.2.6.2-x86_64); OpenJDK 64-Bit Server VM (build 25.275-b01, mixed mode)
+  Starting server from /home/kuba/anaconda3/envs/h2o3/lib/python3.8/site-packages/h2o/backend/bin/h2o.jar
+  Ice root: /home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/export
+  JVM stdout: /home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/export/tmpmgmhdo6b/h2o_kuba_started_from_python.out
+  JVM stderr: /home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/export/tmpmgmhdo6b/h2o_kuba_started_from_python.err
+  Server is running at http://127.0.0.1:61077
+Connecting to H2O server at http://127.0.0.1:61077 ... successful.
 --------------------------  ------------------------------------------------------------------
-H2O cluster uptime:         01 secs
-H2O cluster timezone:       Europe/Warsaw
-H2O data parsing timezone:  UTC
-H2O cluster version:        3.26.0.8
-H2O cluster version age:    12 days
-H2O cluster name:           AtlNlZyweOxD66oJ
-H2O cluster total nodes:    1
-H2O cluster free memory:    14.38 Gb
-H2O cluster total cores:    12
-H2O cluster allowed cores:  8
-H2O cluster status:         accepting new members, healthy
-H2O connection url:         http://127.0.0.1:61071
-H2O connection proxy:       {'http': None, 'https': None}
-H2O internal security:      False
-H2O API Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
-Python version:             3.6.5 final
+H2O_cluster_uptime:         01 secs
+H2O_cluster_timezone:       Europe/Warsaw
+H2O_data_parsing_timezone:  UTC
+H2O_cluster_version:        3.32.0.2
+H2O_cluster_version_age:    2 months and 30 days
+H2O_cluster_name:           ABMTiWUKWpW8Dy3B
+H2O_cluster_total_nodes:    1
+H2O_cluster_free_memory:    7.667 Gb
+H2O_cluster_total_cores:    32
+H2O_cluster_allowed_cores:  4
+H2O_cluster_status:         accepting new members, healthy
+H2O_connection_url:         http://127.0.0.1:61077
+H2O_connection_proxy:       {"http": null, "https": null}
+H2O_internal_security:      False
+H2O_API_Extensions:         Amazon S3, XGBoost, Algos, AutoML, Core V3, TargetEncoder, Core V4
+Python_version:             3.8.6 final
 --------------------------  ------------------------------------------------------------------
+
+Checking for non-empty dirs ...
+
+
+Starting FS loop no: 1
+
+Temp random seed: 73080699
+
 Parse progress: |█████████████████████████████████████████████████████████| 100%
 Parse progress: |█████████████████████████████████████████████████████████| 100%
 AutoML progress: |
-22:42:21.955: Project: ApBsunivHdBSgWg5
-22:42:21.956: AutoML job created: 2019.10.30 22:42:21.953
-22:42:21.956: Build control seed: 1
-22:42:21.957: training frame: Frame key: automl_training_Key_Frame__upload_ab30b881cc437b4c5e5038a7421741c3.hex    cols: 301    rows: 532  chunks: 1    size: 274881  checksum: 8145059570137938656
-22:42:21.957: validation frame: NULL
-22:42:21.957: leaderboard frame: Frame key: Key_Frame__upload_a0656036396484b8bda2561067dd4232.hex    cols: 301    rows: 213  chunks: 1    size: 140217  checksum: 3855241250756155082
-22:42:21.957: blending frame: NULL
-22:42:21.957: response column: Q_perc
-22:42:21.957: fold column: null
-22:42:21.957: weights column: null
-22:42:21.988: Setting stopping tolerance adaptively based on the training frame: 0.043355498476206
-22:42:21.993: AutoML build started: 2019.10.30 22:42:21.993
-
-██
-22:42:31.10: New leader: XGBoost_1_AutoML_20191030_224221, rmse: 15.413337356942426
-
-█
-22:42:34.22: New leader: XGBoost_2_AutoML_20191030_224221, rmse: 15.162597759739477
+12:41:18.141: Project: Apnc2ZVknt6QDQpF
+12:41:18.142: Setting stopping tolerance adaptively based on the training frame: 0.04588314677411235
+12:41:18.142: Build control seed: 73080699
+12:41:18.143: training frame: Frame key: automl_training_Key_Frame__upload_8857ef1a3e7496a75c7eeab65eac48d5.hex    cols: 301    rows: 475  chunks: 1    size: 241741  checksum: 5034909643219116500
+12:41:18.143: validation frame: NULL
+12:41:18.143: leaderboard frame: Frame key: Key_Frame__upload_a1478c3a43b87ba66ed46bdfda6149be.hex    cols: 301    rows: 270  chunks: 1    size: 178952  checksum: -6334691637810218866
+12:41:18.143: blending frame: NULL
+12:41:18.143: response column: Q_perc
+12:41:18.143: fold column: null
+12:41:18.143: weights column: null
+12:41:18.161: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:41:18.175: AutoML job created: 2021.02.17 12:41:18.139
+12:41:18.176: AutoML build started: 2021.02.17 12:41:18.175
+12:41:18.183: AutoML: starting XGBoost_1_AutoML_20210217_124118 model training
 
 █
-22:42:41.28: AutoML: starting GLM hyperparameter search
-
-█████████████
-22:43:05.134: AutoML: starting XGBoost hyperparameter search
-
-███████████
-22:46:01.805: New leader: XGBoost_grid_1_AutoML_20191030_224221_model_17, rmse: 15.103183108932136
-
-██
-22:46:45.845: New leader: XGBoost_grid_1_AutoML_20191030_224221_model_25, rmse: 14.571336596005068
-
-█████
-22:48:48.957: AutoML: starting GBM hyperparameter search
-
-████████
-22:51:53.667: New leader: GBM_grid_1_AutoML_20191030_224221_model_62, rmse: 14.501642140155552
+12:41:20.209: New leader: XGBoost_1_AutoML_20210217_124118, rmse: 22.589450404010314
+12:41:20.210: AutoML: starting XGBoost_2_AutoML_20210217_124118 model training
 
 █
-22:52:15.768: AutoML: starting DeepLearning hyperparameter search
+12:41:21.218: New leader: XGBoost_2_AutoML_20210217_124118, rmse: 17.78761181875039
+12:41:21.219: AutoML: starting XGBoost_3_AutoML_20210217_124118 model training
+
+███
+12:41:23.229: AutoML: starting GLM_1_AutoML_20210217_124118 model training
+
+███
+12:41:25.246: AutoML: starting DRF_1_AutoML_20210217_124118 model training
+
+███
+12:41:27.255: AutoML: starting GBM_1_AutoML_20210217_124118 model training
 
 ██
-22:53:26.870: AutoML: starting DeepLearning hyperparameter search
+12:41:29.365: AutoML: starting GBM_2_AutoML_20210217_124118 model training
+
+██
+12:41:30.371: AutoML: starting GBM_3_AutoML_20210217_124118 model training
+
+██
+12:41:31.377: AutoML: starting GBM_4_AutoML_20210217_124118 model training
+12:41:32.383: AutoML: starting GBM_5_AutoML_20210217_124118 model training
+
+██
+12:41:33.393: AutoML: starting DeepLearning_1_AutoML_20210217_124118 model training
 
 ████
-22:54:42.142: AutoML: starting DeepLearning hyperparameter search
+12:41:35.450: AutoML: starting XRT_1_AutoML_20210217_124118 model training
+12:41:36.458: AutoML: starting XGBoost_grid__1_AutoML_20210217_124118 hyperparameter search
 
-█Failed polling AutoML progress log: HTTP 500 Server Error:
-Server error java.lang.NullPointerException:
-  Error: Caught exception: java.lang.NullPointerException
-  Request: None
+███████████████
+12:41:46.202: AutoML: starting GBM_grid__1_AutoML_20210217_124118 hyperparameter search
 
-█████| 100%
+████████
+12:41:51.363: New leader: GBM_grid__1_AutoML_20210217_124118_model_1, rmse: 17.528982934810994
+12:41:51.363: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124118 hyperparameter search
 
-22:56:05.262: AutoML build stopped: 2019.10.30 22:56:05.262
-22:56:05.262: AutoML build done: built 145 models
-22:56:05.262: AutoML duration: 13 min 43.269 sec
+████
+12:41:54.384: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124118 hyperparameter search
 
+████
+12:41:57.400: AutoML: starting DeepLearning_grid__3_AutoML_20210217_124118 hyperparameter search
+
+██| 100%
+
+12:41:59.412: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124118 model training
+12:42:00.423: New leader: StackedEnsemble_BestOfFamily_AutoML_20210217_124118, rmse: 17.222295583227027
+12:42:00.424: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124118 model training
+12:42:01.441: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:42:01.441: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20), grid_3 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:42:01.441: AutoML build stopped: 2021.02.17 12:42:01.441
+12:42:01.441: AutoML build done: built 20 models
+12:42:01.441: AutoML duration: 43.266 sec
+
+
+RMSE for FS loop no: 1 is 17.222295583227027
+
+Current best aml name: Apnc2ZVknt6QDQpF
+Current best seed: 73080699
+
+Feature selection seed was set to: 
+
+73080699
+
+Omitting loop mode
+
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+AutoML progress: |
+12:42:03.601: Project: A9TuflxqZGDreJoG
+12:42:03.602: Setting stopping tolerance adaptively based on the training frame: 0.04588314677411235
+12:42:03.602: Build control seed: 73080699
+12:42:03.602: training frame: Frame key: automl_training_Key_Frame__upload_84e05e2193d374e3bdf2bdd30ee545bb.hex    cols: 301    rows: 475  chunks: 1    size: 241741  checksum: 5034909643219116500
+12:42:03.602: validation frame: NULL
+12:42:03.602: leaderboard frame: Frame key: Key_Frame__upload_a5c6fe3b68d6a54f5708ee0188e948ed.hex    cols: 301    rows: 270  chunks: 1    size: 178952  checksum: -6334691637810218866
+12:42:03.602: blending frame: NULL
+12:42:03.602: response column: Q_perc
+12:42:03.602: fold column: null
+12:42:03.602: weights column: null
+12:42:03.602: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:42:03.603: AutoML job created: 2021.02.17 12:42:03.601
+12:42:03.603: AutoML build started: 2021.02.17 12:42:03.603
+12:42:03.603: AutoML: starting XGBoost_1_AutoML_20210217_124203 model training
+
+█
+12:42:05.610: New leader: XGBoost_1_AutoML_20210217_124203, rmse: 21.847239990494497
+12:42:05.610: AutoML: starting XGBoost_2_AutoML_20210217_124203 model training
+
+█
+12:42:06.619: New leader: XGBoost_2_AutoML_20210217_124203, rmse: 17.808445266138467
+12:42:06.619: AutoML: starting XGBoost_3_AutoML_20210217_124203 model training
+
+███
+12:42:08.624: AutoML: starting GLM_1_AutoML_20210217_124203 model training
+
+███
+12:42:11.630: AutoML: starting DRF_1_AutoML_20210217_124203 model training
+
+██
+12:42:12.635: AutoML: starting GBM_1_AutoML_20210217_124203 model training
+
+██
+12:42:13.642: AutoML: starting GBM_2_AutoML_20210217_124203 model training
+
+██
+12:42:14.648: AutoML: starting GBM_3_AutoML_20210217_124203 model training
+12:42:15.654: AutoML: starting GBM_4_AutoML_20210217_124203 model training
+
+██
+12:42:16.659: AutoML: starting GBM_5_AutoML_20210217_124203 model training
+
+██
+12:42:17.664: AutoML: starting DeepLearning_1_AutoML_20210217_124203 model training
+
+██
+12:42:19.672: AutoML: starting XRT_1_AutoML_20210217_124203 model training
+
+██
+12:42:20.679: AutoML: starting XGBoost_grid__1_AutoML_20210217_124203 hyperparameter search
+
+████████████████
+12:42:31.350: AutoML: starting GBM_grid__1_AutoML_20210217_124203 hyperparameter search
+
+███████
+12:42:36.538: New leader: GBM_grid__1_AutoML_20210217_124203_model_1, rmse: 17.46012206551187
+
+█
+12:42:37.539: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124203 hyperparameter search
+
+█████
+12:42:40.554: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124203 hyperparameter search
+
+████
+12:42:43.573: AutoML: starting DeepLearning_grid__3_AutoML_20210217_124203 hyperparameter search
+
+█| 100%
+
+12:42:45.578: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124203 model training
+12:42:46.589: New leader: StackedEnsemble_BestOfFamily_AutoML_20210217_124203, rmse: 17.229162584913468
+12:42:46.589: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124203 model training
+12:42:47.605: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:42:47.605: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20), grid_3 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:42:47.605: AutoML build stopped: 2021.02.17 12:42:47.605
+12:42:47.605: AutoML build done: built 19 models
+12:42:47.605: AutoML duration: 44.002 sec
+
+
+RMSE for FS loop no: 2 is 17.229162584913468
+
+
+Used best aml name: Apnc2ZVknt6QDQpF
+Used best seed: 73080699
+
+AutoML progress: |
+12:41:18.141: Project: Apnc2ZVknt6QDQpF
+12:41:18.142: Setting stopping tolerance adaptively based on the training frame: 0.04588314677411235
+12:41:18.142: Build control seed: 73080699
+12:41:18.143: training frame: Frame key: automl_training_Key_Frame__upload_8857ef1a3e7496a75c7eeab65eac48d5.hex    cols: 301    rows: 475  chunks: 1    size: 241741  checksum: 5034909643219116500
+12:41:18.143: validation frame: NULL
+12:41:18.143: leaderboard frame: Frame key: Key_Frame__upload_a1478c3a43b87ba66ed46bdfda6149be.hex    cols: 301    rows: 270  chunks: 1    size: 178952  checksum: -6334691637810218866
+12:41:18.143: blending frame: NULL
+12:41:18.143: response column: Q_perc
+12:41:18.143: fold column: null
+12:41:18.143: weights column: null
+12:41:18.161: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:41:18.175: AutoML job created: 2021.02.17 12:41:18.139
+12:41:18.176: AutoML build started: 2021.02.17 12:41:18.175
+12:41:18.183: AutoML: starting XGBoost_1_AutoML_20210217_124118 model training
+12:41:20.209: New leader: XGBoost_1_AutoML_20210217_124118, rmse: 22.589450404010314
+12:41:20.210: AutoML: starting XGBoost_2_AutoML_20210217_124118 model training
+12:41:21.218: New leader: XGBoost_2_AutoML_20210217_124118, rmse: 17.78761181875039
+12:41:21.219: AutoML: starting XGBoost_3_AutoML_20210217_124118 model training
+12:41:23.229: AutoML: starting GLM_1_AutoML_20210217_124118 model training
+12:41:25.246: AutoML: starting DRF_1_AutoML_20210217_124118 model training
+12:41:27.255: AutoML: starting GBM_1_AutoML_20210217_124118 model training
+12:41:29.365: AutoML: starting GBM_2_AutoML_20210217_124118 model training
+12:41:30.371: AutoML: starting GBM_3_AutoML_20210217_124118 model training
+12:41:31.377: AutoML: starting GBM_4_AutoML_20210217_124118 model training
+12:41:32.383: AutoML: starting GBM_5_AutoML_20210217_124118 model training
+12:41:33.393: AutoML: starting DeepLearning_1_AutoML_20210217_124118 model training
+12:41:35.450: AutoML: starting XRT_1_AutoML_20210217_124118 model training
+12:41:36.458: AutoML: starting XGBoost_grid__1_AutoML_20210217_124118 hyperparameter search
+12:41:46.202: AutoML: starting GBM_grid__1_AutoML_20210217_124118 hyperparameter search
+12:41:51.363: New leader: GBM_grid__1_AutoML_20210217_124118_model_1, rmse: 17.528982934810994
+12:41:51.363: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124118 hyperparameter search
+12:41:54.384: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124118 hyperparameter search
+12:41:57.400: AutoML: starting DeepLearning_grid__3_AutoML_20210217_124118 hyperparameter search
+12:41:59.412: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124118 model training
+12:42:00.423: New leader: StackedEnsemble_BestOfFamily_AutoML_20210217_124118, rmse: 17.222295583227027
+12:42:00.424: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124118 model training
+12:42:01.441: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:42:01.441: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20), grid_3 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:42:01.441: AutoML build stopped: 2021.02.17 12:42:01.441
+12:42:01.441: AutoML build done: built 20 models
+12:42:01.441: AutoML duration: 43.266 sec
+12:42:48.529: Project: Apnc2ZVknt6QDQpF
+12:42:48.530: Setting stopping tolerance adaptively based on the training frame: 0.04588314677411235
+12:42:48.530: Build control seed: 73080699
+12:42:48.530: training frame: Frame key: automl_training_Key_Frame__upload_8857ef1a3e7496a75c7eeab65eac48d5.hex    cols: 301    rows: 475  chunks: 1    size: 241741  checksum: 5034909643219116500
+12:42:48.530: validation frame: NULL
+12:42:48.530: leaderboard frame: Frame key: Key_Frame__upload_a1478c3a43b87ba66ed46bdfda6149be.hex    cols: 301    rows: 270  chunks: 1    size: 178952  checksum: -6334691637810218866
+12:42:48.530: blending frame: NULL
+12:42:48.530: response column: Q_perc
+12:42:48.530: fold column: null
+12:42:48.530: weights column: null
+12:42:48.530: New models will be added to existing leaderboard Apnc2ZVknt6QDQpF@@Q_perc (leaderboard frame=Key_Frame__upload_a1478c3a43b87ba66ed46bdfda6149be.hex) with already 20 models.
+12:42:48.531: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:42:48.531: AutoML job created: 2021.02.17 12:42:48.528
+12:42:48.531: AutoML build started: 2021.02.17 12:42:48.531
+12:42:48.532: AutoML: starting XGBoost_1_AutoML_20210217_124248 model training
+
+██
+12:42:56.541: AutoML: starting XGBoost_2_AutoML_20210217_124248 model training
+
+
+12:42:57.547: AutoML: starting XGBoost_3_AutoML_20210217_124248 model training
+
+██
+12:43:02.553: AutoML: starting GLM_1_AutoML_20210217_124248 model training
+
+██
+12:43:05.560: AutoML: starting DRF_1_AutoML_20210217_124248 model training
+
+██
+12:43:11.567: AutoML: starting GBM_1_AutoML_20210217_124248 model training
+
+█
+12:43:17.576: AutoML: starting GBM_2_AutoML_20210217_124248 model training
+
+██
+12:43:23.590: AutoML: starting GBM_3_AutoML_20210217_124248 model training
+
+██
+12:43:30.606: AutoML: starting GBM_4_AutoML_20210217_124248 model training
+
+█
+12:43:37.615: AutoML: starting GBM_5_AutoML_20210217_124248 model training
+
+█
+12:43:40.622: AutoML: starting DeepLearning_1_AutoML_20210217_124248 model training
+
+█
+12:43:43.631: AutoML: starting XRT_1_AutoML_20210217_124248 model training
+
+██
+12:43:50.644: AutoML: starting XGBoost_grid__1_AutoML_20210217_124248 hyperparameter search
+
+████████████████
+12:45:27.425: AutoML: starting GBM_grid__1_AutoML_20210217_124248 hyperparameter search
+
+█
+12:45:37.614: New leader: GBM_grid__1_AutoML_20210217_124248_model_1, rmse: 17.103023201071665
+
+██████
+12:46:13.707: New leader: GBM_grid__1_AutoML_20210217_124248_model_9, rmse: 16.917137409523043
+
+█
+12:46:24.739: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124248 hyperparameter search
+
+████
+12:46:49.808: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124248 hyperparameter search
+
+████
+12:47:18.99: AutoML: starting DeepLearning_grid__3_AutoML_20210217_124248 hyperparameter search
+
+██
+12:47:31.531: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124248 model training
+
+█
+12:47:32.554: New leader: StackedEnsemble_BestOfFamily_AutoML_20210217_124248, rmse: 16.854717497749277
+12:47:32.554: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124248 model training
+
+
+12:47:33.593: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:47:33.593: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20), grid_3 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:47:33.594: AutoML build stopped: 2021.02.17 12:47:33.593
+12:47:33.594: AutoML build done: built 47 models
+12:47:33.594: AutoML duration:  4 min 45.062 sec
+
+███| 100%
 
 Final model of feature selection is located at: 
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_FS/GBM_grid_1_AutoML_20191030_224221_model_62
+/home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/model_FS/StackedEnsemble_BestOfFamily_AutoML_20210217_124248
 
 Leaderboard:  
+
+['GBM_grid__1_AutoML_20210217_124248_model_9', 'XGBoost_grid__1_AutoML_20210217_124248_model_7', 'DRF_1_AutoML_20210217_124248', 'XRT_1_AutoML_20210217_124248', 'GLM_1_AutoML_20210217_124248', 'DeepLearning_grid__1_AutoML_20210217_124248_model_2']
+10cv loop:  1 
+
+Current random seed: 35036138
+
+Current random project name: ALwFzdhGchFTNRoR
 
 CV fold:  1
 Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
   18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
   36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
-  54  55  56  57  69  70  71  72  73  74  75  76  77  78  79  80  81  82
-  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
- 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
- 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
- 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154
- 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172
- 173 174 175 176 177 178 179 180 181 182 183 184 185 186 192 193 194 195
- 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213
- 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231
- 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249
- 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267
- 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285
- 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303
- 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321
- 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339
- 340 341 342 343 344 345 346 347 348 349 350 351 352 353 363 364 365 366
- 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384
- 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402
- 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420
- 421 422 423 424 425 426 427 428 429 430 431 432 446 447 448 449 450 451
- 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469
- 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487
- 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505
- 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523
- 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541
- 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 565
- 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583
- 584 585 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605
- 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623
- 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639 640 641
- 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659
- 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675 676 677
- 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693 694 695
- 696 697 698 699 700 701 702 703 704 705 706 707 708 709 710 711 712 713
- 714 715]
-Test Index:  [ 58  59  60  61  62  63  64  65  66  67  68 187 188 189 190 191 354 355
- 356 357 358 359 360 361 362 433 434 435 436 437 438 439 440 441 442 443
- 444 445 559 560 561 562 563 564 586 587 588 589 716 717 718 719 720 721
- 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
- 740 741 742 743 744] 
-
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  668
-ncols for train dataset =  23
-CV fold:  2
-Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
-  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
-  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
-  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
-  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
- 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
- 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
- 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
- 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
- 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202
- 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220
- 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
- 239 240 241 242 243 244 245 246 247 248 249 250 264 265 266 267 268 269
- 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287
- 288 289 290 291 292 293 294 295 296 297 298 299 318 319 320 321 322 323
- 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341
- 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359
- 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377
- 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395
- 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413
- 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431
- 432 433 434 435 436 437 438 439 440 441 442 443 444 445 456 457 458 459
- 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
- 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
- 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
- 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
- 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549
- 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567
- 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585
- 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603
- 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621
- 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639
- 640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657
- 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704
- 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722
- 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740
- 741 742 743 744]
-Test Index:  [162 163 164 165 166 251 252 253 254 255 256 257 258 259 260 261 262 263
- 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
- 446 447 448 449 450 451 452 453 454 455 658 659 660 661 662 663 664 665
- 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683
- 684 685 686] 
-
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  670
-ncols for train dataset =  23
-CV fold:  3
-Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
-  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
-  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
-  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
-  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
- 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
- 126 127 128 129 130 131 137 138 139 140 141 142 143 144 145 146 147 148
- 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166
- 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
- 185 186 187 188 189 190 191 199 200 201 202 203 204 205 206 207 208 209
- 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227
- 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245
- 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263
- 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281
+  54  55  56  57  58  59  60  61  62  69  70  71  72  73  74  75  76  77
+  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
+  96  97  98 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+ 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
+ 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
+ 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
+ 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
+ 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 236
+ 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254
+ 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272
+ 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290
  291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308
  309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326
  327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344
@@ -211,46 +371,143 @@ Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  
  381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398
  399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416
  417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434
- 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452
- 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 491 492 493
- 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511
- 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529
- 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547
- 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565
- 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583
- 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601
- 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619
- 620 621 622 623 624 625 626 627 628 658 659 660 661 662 663 664 665 666
+ 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463
+ 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481
+ 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499
+ 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517
+ 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535
+ 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553
+ 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 583 584
+ 585 586 587 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611
+ 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629
+ 630 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647
+ 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665
+ 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683
+ 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701
+ 702 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719
+ 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737
+ 738 739]
+Test Index:  [ 63  64  65  66  67  68  99 100 101 102 207 208 209 210 211 212 213 214
+ 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
+ 233 234 235 435 436 437 438 439 440 441 442 443 444 445 570 571 572 573
+ 574 575 576 577 578 579 580 581 582 588 589 590 591 592 593 594 595 596
+ 740 741 742 743 744] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  668
+ncols for train dataset =  7
+CV fold:  2
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  63  64
+  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
+ 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
+ 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
+ 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154
+ 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172
+ 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190
+ 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208
+ 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226
+ 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244
+ 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262
+ 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280
+ 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298
+ 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316
+ 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334
+ 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352
+ 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370
+ 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388
+ 389 390 391 392 393 394 395 396 397 398 417 418 419 420 421 422 423 424
+ 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442
+ 443 444 445 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470
+ 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488
+ 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506
+ 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524
+ 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542
+ 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560
+ 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578
+ 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596
+ 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614
+ 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631 632
+ 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649 650
+ 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667 668
+ 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686
+ 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704
+ 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722
+ 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740
+ 741 742 743 744]
+Test Index:  [ 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33
+  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+  52  53  54  55  56  57  58  59  60  61  62 399 400 401 402 403 404 405
+ 406 407 408 409 410 411 412 413 414 415 416 446 447 448 449 450 451 452
+ 453 454 455] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  670
+ncols for train dataset =  7
+CV fold:  3
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  76  77  78
+  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96
+  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114
+ 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132
+ 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150
+ 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168
+ 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186
+ 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
+ 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 256 257 258 259 260 271 272 273 274 275 276 277
+ 278 279 280 281 282 283 284 285 286 287 288 289 319 320 321 322 323 324
+ 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+ 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360
+ 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378
+ 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396
+ 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414
+ 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432
+ 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450
+ 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468
+ 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486
+ 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504
+ 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522
+ 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540
+ 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
+ 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576
+ 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+ 595 596 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625
+ 626 627 628 629 630 631 632 633 639 640 641 642 643 644 645 646 647 648
+ 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666
  667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684
  685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702
  703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
  721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
  739 740 741 742 743 744]
-Test Index:  [132 133 134 135 136 192 193 194 195 196 197 198 282 283 284 285 286 287
- 288 289 290 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482
- 483 484 485 486 487 488 489 490 629 630 631 632 633 634 635 636 637 638
- 639 640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656
- 657] 
+Test Index:  [ 69  70  71  72  73  74  75 247 248 249 250 251 252 253 254 255 261 262
+ 263 264 265 266 267 268 269 270 290 291 292 293 294 295 296 297 298 299
+ 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
+ 318 597 598 599 600 601 602 603 604 605 606 607 608 609 634 635 636 637
+ 638] 
 
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  672
-ncols for train dataset =  23
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
 CV fold:  4
-Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-  18  19  20  21  22  23  36  37  38  39  40  41  42  43  44  45  46  58
-  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76
-  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94
-  95  96  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 112
- 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130
- 131 132 133 134 135 136 142 143 144 145 146 147 148 149 150 151 152 153
- 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
- 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
- 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 213 214
- 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
- 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
- 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268
- 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286
- 287 288 289 290 300 301 302 303 304 305 306 307 308 309 310 311 312 313
+Train Index:  [ 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33
+  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69
+  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87
+  88  89  90  91  92  93  99 100 101 102 103 104 105 106 107 108 109 110
+ 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128
+ 129 130 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158
+ 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176
+ 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194
+ 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212
+ 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230
+ 231 232 233 234 235 247 248 249 250 251 252 253 254 255 256 257 258 259
+ 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277
+ 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295
+ 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313
  314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331
  332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349
  350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367
@@ -263,56 +520,471 @@ Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  
  476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493
  494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511
  512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529
- 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547
- 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565
- 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583
- 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601
- 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619
- 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637
- 638 639 640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655
- 656 657 658 659 660 661 662 663 664 665 666 667 668 669 670 671 672 673
- 674 675 676 677 678 679 680 681 682 683 684 685 686 716 717 718 719 720
+ 530 531 532 533 534 535 536 537 538 539 540 570 571 572 573 574 575 576
+ 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+ 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612
+ 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630
+ 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648
+ 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666
+ 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684
+ 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702
+ 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
  721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
  739 740 741 742 743 744]
-Test Index:  [ 24  25  26  27  28  29  30  31  32  33  34  35  47  48  49  50  51  52
-  53  54  55  56  57 137 138 139 140 141 206 207 208 209 210 211 212 291
- 292 293 294 295 296 297 298 299 687 688 689 690 691 692 693 694 695 696
- 697 698 699 700 701 702 703 704 705 706 707 708 709 710 711 712 713 714
- 715] 
+Test Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  94  95
+  96  97  98 131 132 133 134 135 136 137 138 139 140 141 142 236 237 238
+ 239 240 241 242 243 244 245 246 541 542 543 544 545 546 547 548 549 550
+ 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568
+ 569] 
 
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  672
-ncols for train dataset =  23
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
 CV fold:  5
 Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
   18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
   36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
   54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
   72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
-  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 123 124 125
- 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
- 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161
- 162 163 164 165 166 172 173 174 175 176 177 178 179 180 181 182 183 184
- 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202
- 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220
- 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
- 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256
- 257 258 259 260 261 262 263 273 274 275 276 277 278 279 280 281 282 283
- 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301
- 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 327 328
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 121 122 123 124 125 126 127 128 129 130 131 132 133 134
+ 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152
+ 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
+ 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188
+ 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206
+ 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224
+ 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242
+ 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260
+ 261 262 263 264 265 266 267 268 269 270 276 277 278 279 280 290 291 292
+ 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310
+ 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328
  329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346
  347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364
  365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382
  383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400
- 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418
- 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436
+ 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 435 436
  437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454
- 455 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484
- 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502
- 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520
- 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538
- 539 540 541 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573
- 574 575 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596
+ 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472
+ 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490
+ 491 492 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525
+ 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543
+ 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561
+ 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579
+ 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597
+ 598 599 600 601 602 603 604 605 606 607 608 609 622 623 624 625 626 627
+ 628 629 630 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645
+ 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663
+ 664 665 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681
+ 682 683 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699
+ 700 701 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722
+ 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740
+ 741 742 743 744]
+Test Index:  [112 113 114 115 116 117 118 119 120 271 272 273 274 275 281 282 283 284
+ 285 286 287 288 289 417 418 419 420 421 422 423 424 425 426 427 428 429
+ 430 431 432 433 434 493 494 495 496 497 498 499 500 501 502 503 504 505
+ 506 507 508 509 610 611 612 613 614 615 616 617 618 619 620 621 702 703
+ 704 705 706] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  670
+ncols for train dataset =  7
+CV fold:  6
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 154
+ 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172
+ 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190
+ 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208
+ 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226
+ 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244
+ 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262
+ 263 264 265 266 267 268 269 270 271 272 273 274 275 281 282 283 284 285
+ 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303
+ 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321
+ 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339
+ 340 341 342 343 344 345 346 347 348 367 368 369 370 371 381 382 383 384
+ 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402
+ 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420
+ 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438
+ 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456
+ 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474
+ 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492
+ 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510
+ 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528
+ 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546
+ 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564
+ 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582
+ 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605
+ 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623
+ 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639 640 641
+ 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659
+ 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675 676 677
+ 678 679 680 681 682 683 693 694 695 696 697 698 699 700 701 702 703 704
+ 705 706 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
+ 740 741 742 743 744]
+Test Index:  [143 144 145 146 147 148 149 150 151 152 153 276 277 278 279 280 349 350
+ 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 372 373
+ 374 375 376 377 378 379 380 583 584 585 586 587 684 685 686 687 688 689
+ 690 691 692 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
+ 722 723] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  7
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148
+ 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166
+ 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
+ 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202
+ 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220
+ 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
+ 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256
+ 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274
+ 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292
+ 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310
+ 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328
+ 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346
+ 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364
+ 365 366 372 373 374 375 376 377 378 379 380 399 400 401 402 403 404 405
+ 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
+ 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441
+ 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459
+ 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+ 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
+ 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
+ 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
+ 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
+ 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576
+ 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+ 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612
+ 613 614 615 616 617 618 619 620 621 634 635 636 637 638 639 640 641 642
+ 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660
+ 661 662 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686 687
+ 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705
+ 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722 723
+ 740 741 742 743 744]
+Test Index:  [126 127 128 129 130 367 368 369 370 371 381 382 383 384 385 386 387 388
+ 389 390 391 392 393 394 395 396 397 398 532 533 534 535 536 537 538 539
+ 540 622 623 624 625 626 627 628 629 630 631 632 633 663 664 665 666 667
+ 668 669 670 671 724 725 726 727 728 729 730 731 732 733 734 735 736 737
+ 738 739] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  8
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 112 113 114 115 116
+ 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134
+ 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152
+ 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
+ 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188
+ 189 190 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 261 262 263
+ 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281
+ 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299
+ 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
+ 318 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365
+ 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383
+ 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401
+ 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419
+ 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437
+ 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455
+ 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473
+ 474 475 476 477 478 493 494 495 496 497 498 499 500 501 502 503 504 505
+ 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523
+ 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541
+ 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559
+ 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577
+ 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595
+ 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613
+ 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631
+ 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649
+ 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667
+ 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685
+ 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703
+ 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
+ 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
+ 740 741 742 743 744]
+Test Index:  [103 104 105 106 107 108 109 110 111 191 192 193 194 195 196 197 198 199
+ 200 201 202 203 204 205 206 256 257 258 259 260 319 320 321 322 323 324
+ 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+ 343 344 345 346 347 348 479 480 481 482 483 484 485 486 487 488 489 490
+ 491 492] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  9
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 179 180 181 182 183 184 185 186
+ 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
+ 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258
+ 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276
+ 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294
+ 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312
+ 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330
+ 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348
+ 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366
+ 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384
+ 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402
+ 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420
+ 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438
+ 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456
+ 457 458 459 460 479 480 481 482 483 484 485 486 487 488 489 490 491 492
+ 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510
+ 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528
+ 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546
+ 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564
+ 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582
+ 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600
+ 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618
+ 619 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636
+ 637 638 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663
+ 664 665 666 667 668 669 670 671 684 685 686 687 688 689 690 691 692 702
+ 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
+ 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
+ 739 740 741 742 743 744]
+Test Index:  [154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
+ 172 173 174 175 176 177 178 461 462 463 464 465 466 467 468 469 470 471
+ 472 473 474 475 476 477 478 639 640 641 642 643 644 645 646 647 672 673
+ 674 675 676 677 678 679 680 681 682 683 693 694 695 696 697 698 699 700
+ 701] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
+CV fold:  10
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 126 127 128 129 130
+ 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148
+ 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166
+ 167 168 169 170 171 172 173 174 175 176 177 178 191 192 193 194 195 196
+ 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214
+ 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
+ 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
+ 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268
+ 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286
+ 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304
+ 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322
+ 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340
+ 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358
+ 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376
+ 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394
+ 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412
+ 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430
+ 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448
+ 449 450 451 452 453 454 455 461 462 463 464 465 466 467 468 469 470 471
+ 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489
+ 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507
+ 508 509 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547
+ 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565
+ 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583
+ 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601
+ 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619
+ 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637
+ 638 639 640 641 642 643 644 645 646 647 663 664 665 666 667 668 669 670
+ 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686 687 688
+ 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706
+ 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722 723 724
+ 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740 741 742
+ 743 744]
+Test Index:  [ 76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93
+ 121 122 123 124 125 179 180 181 182 183 184 185 186 187 188 189 190 456
+ 457 458 459 460 510 511 512 513 514 515 516 517 518 519 520 521 522 523
+ 524 525 526 527 528 529 530 531 648 649 650 651 652 653 654 655 656 657
+ 658 659 660 661 662] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  668
+ncols for train dataset =  7
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+AutoML progress: |
+12:47:37.389: Project: ALwFzdhGchFTNRoR
+12:47:37.389: Fold column Fold_no will be used for cross-validation. nfolds parameter will be ignored.
+12:47:37.389: Setting stopping tolerance adaptively based on the training frame: 0.03663716527236558
+12:47:37.389: Build control seed: 35036138
+12:47:37.389: training frame: Frame key: automl_training_Key_Frame__upload_bb4e3a36ebd0839c6e6d72fd3c8340ea.hex    cols: 9    rows: 745  chunks: 1    size: 20882  checksum: -2568361079957462725
+12:47:37.389: validation frame: NULL
+12:47:37.390: leaderboard frame: NULL
+12:47:37.390: blending frame: NULL
+12:47:37.390: response column: Q_perc
+12:47:37.390: fold column: [745,1.0/5.495302013422814/10.0,  813  B, {/127.0.0.1:61077:0:}]
+12:47:37.390: weights column: null
+12:47:37.390: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:47:37.390: AutoML job created: 2021.02.17 12:47:37.389
+12:47:37.391: AutoML build started: 2021.02.17 12:47:37.391
+12:47:37.391: AutoML: starting XGBoost_1_AutoML_20210217_124737 model training
+
+█
+12:47:39.400: New leader: XGBoost_1_AutoML_20210217_124737, rmse: 19.40907776845023
+12:47:39.400: AutoML: starting XGBoost_2_AutoML_20210217_124737 model training
+
+
+12:47:40.402: New leader: XGBoost_2_AutoML_20210217_124737, rmse: 18.202791074277215
+12:47:40.402: AutoML: starting XGBoost_3_AutoML_20210217_124737 model training
+
+██
+12:47:42.404: AutoML: starting GLM_1_AutoML_20210217_124737 model training
+
+█
+12:47:43.407: AutoML: starting DRF_1_AutoML_20210217_124737 model training
+
+█
+12:47:44.408: New leader: DRF_1_AutoML_20210217_124737, rmse: 16.98018468850446
+12:47:44.408: AutoML: starting GBM_1_AutoML_20210217_124737 model training
+
+██
+12:47:45.410: New leader: GBM_1_AutoML_20210217_124737, rmse: 15.795020820774782
+12:47:45.410: AutoML: starting GBM_2_AutoML_20210217_124737 model training
+
+█
+12:47:46.412: AutoML: starting GBM_3_AutoML_20210217_124737 model training
+12:47:47.415: AutoML: starting GBM_4_AutoML_20210217_124737 model training
+
+██
+12:47:48.417: AutoML: starting GBM_5_AutoML_20210217_124737 model training
+
+██
+12:47:49.419: AutoML: starting DeepLearning_1_AutoML_20210217_124737 model training
+12:47:50.421: AutoML: starting XRT_1_AutoML_20210217_124737 model training
+
+██
+12:47:51.423: AutoML: starting XGBoost_grid__1_AutoML_20210217_124737 hyperparameter search
+
+████████████████████
+12:48:11.110: AutoML: starting GBM_grid__1_AutoML_20210217_124737 hyperparameter search
+
+████████
+12:48:22.298: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124737 hyperparameter search
+
+████
+12:48:27.399: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124737 hyperparameter search
+
+██████████| 100%
+
+12:48:38.406: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124737 model training
+12:48:39.410: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124737 model training
+12:48:40.413: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:48:40.413: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:48:40.413: AutoML build stopped: 2021.02.17 12:48:40.413
+12:48:40.413: AutoML build done: built 46 models
+12:48:40.413: AutoML duration:  1 min  3.022 sec
+
+Seed of 10cv was set to: 
+
+35036138
+
+Current random project name: Abvd1gxcYZBRbj34
+
+CV fold:  1
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  69  70  71  72  73  74  75  76  77
+  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95
+  96  97  98 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+ 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135
+ 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153
+ 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
+ 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189
+ 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 236
+ 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254
+ 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272
+ 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290
+ 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308
+ 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326
+ 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344
+ 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362
+ 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380
+ 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398
+ 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416
+ 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434
+ 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463
+ 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481
+ 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499
+ 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517
+ 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535
+ 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553
+ 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 583 584
+ 585 586 587 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611
+ 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629
+ 630 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647
+ 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665
+ 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683
+ 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701
+ 702 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719
+ 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737
+ 738 739]
+Test Index:  [ 63  64  65  66  67  68  99 100 101 102 207 208 209 210 211 212 213 214
+ 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
+ 233 234 235 435 436 437 438 439 440 441 442 443 444 445 570 571 572 573
+ 574 575 576 577 578 579 580 581 582 588 589 590 591 592 593 594 595 596
+ 740 741 742 743 744] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  668
+ncols for train dataset =  7
+CV fold:  2
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  63  64
+  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
+ 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
+ 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
+ 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154
+ 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172
+ 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190
+ 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208
+ 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226
+ 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244
+ 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262
+ 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280
+ 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298
+ 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316
+ 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334
+ 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352
+ 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370
+ 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388
+ 389 390 391 392 393 394 395 396 397 398 417 418 419 420 421 422 423 424
+ 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442
+ 443 444 445 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470
+ 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488
+ 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506
+ 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524
+ 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542
+ 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560
+ 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578
+ 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596
  597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614
  615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631 632
  633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649 650
@@ -322,178 +994,35 @@ Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  
  705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722
  723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740
  741 742 743 744]
-Test Index:  [105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122
- 167 168 169 170 171 264 265 266 267 268 269 270 271 272 318 319 320 321
- 322 323 324 325 326 456 457 458 459 460 461 462 463 464 465 466 467 542
- 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 576 577
- 578 579 580] 
+Test Index:  [ 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33
+  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+  52  53  54  55  56  57  58  59  60  61  62 399 400 401 402 403 404 405
+ 406 407 408 409 410 411 412 413 414 415 416 446 447 448 449 450 451 452
+ 453 454 455] 
 
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  670
-ncols for train dataset =  23
-CV fold:  6
-Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
-  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
-  47  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64
-  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
-  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
- 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118
- 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136
- 137 138 139 140 141 142 143 144 145 146 152 153 154 155 156 157 158 159
- 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 182
- 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200
- 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218
- 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236
- 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254
- 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272
- 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290
- 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308
- 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326
- 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344
- 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371
- 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389
- 390 391 392 393 394 395 396 415 416 417 418 419 420 421 422 423 424 425
- 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443
- 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461
- 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479
- 480 481 482 483 484 485 486 487 488 489 490 508 509 510 511 512 513 514
- 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532
- 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550
- 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568
- 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586
- 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604
- 605 606 607 608 609 610 620 621 622 623 624 625 626 627 628 629 630 631
- 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649
- 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667
- 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685
- 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703
- 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
- 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
- 740 741 742 743 744]
-Test Index:  [ 36  37  38  39  40  41  42  43  44  45  46 147 148 149 150 151 177 178
- 179 180 181 345 346 347 348 349 350 351 352 353 397 398 399 400 401 402
- 403 404 405 406 407 408 409 410 411 412 413 414 491 492 493 494 495 496
- 497 498 499 500 501 502 503 504 505 506 507 611 612 613 614 615 616 617
- 618 619] 
-
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  671
-ncols for train dataset =  23
-CV fold:  7
-Train Index:  [ 12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29
-  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47
-  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65
-  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83
-  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 101
- 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
- 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137
- 138 139 140 141 142 143 144 145 146 147 148 149 150 151 157 158 159 160
- 161 162 163 164 165 166 167 168 169 170 171 177 178 179 180 181 182 183
- 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201
- 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219
- 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237
- 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255
- 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273
- 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291
- 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309
- 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327
- 328 329 330 331 332 333 334 335 345 346 347 348 349 350 351 352 353 354
- 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372
- 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390
- 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408
- 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426
- 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444
- 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462
- 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480
- 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498
- 499 500 501 502 503 504 505 506 507 542 543 544 545 546 547 548 549 550
- 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568
- 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586
- 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 611 612 613
- 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631
- 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649
- 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667
- 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685
- 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703
- 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
- 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
- 740 741 742 743 744]
-Test Index:  [  0   1   2   3   4   5   6   7   8   9  10  11 152 153 154 155 156 172
- 173 174 175 176 336 337 338 339 340 341 342 343 344 508 509 510 511 512
- 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530
- 531 532 533 534 535 536 537 538 539 540 541 602 603 604 605 606 607 608
- 609 610] 
-
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  671
-ncols for train dataset =  23
-CV fold:  8
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  670
+ncols for train dataset =  7
+CV fold:  3
 Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
   18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
   36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
-  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
-  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
-  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
- 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 132 133 134
- 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152
- 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
- 171 172 173 174 175 176 177 178 179 180 181 187 188 189 190 191 192 193
- 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211
- 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229
- 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247
- 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265
- 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283
- 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301
- 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319
- 320 321 322 323 324 325 326 336 337 338 339 340 341 342 343 344 345 346
- 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364
- 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 397 398
- 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 433 434
- 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452
- 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470
- 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488
- 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506
- 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524
- 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542
- 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560
- 561 562 563 564 570 571 572 573 574 575 576 577 578 579 580 581 582 583
- 584 585 586 587 588 589 602 603 604 605 606 607 608 609 610 611 612 613
- 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631
- 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649
- 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667
- 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685
- 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703
- 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
- 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
- 740 741 742 743 744]
-Test Index:  [123 124 125 126 127 128 129 130 131 182 183 184 185 186 327 328 329 330
- 331 332 333 334 335 381 382 383 384 385 386 387 388 389 390 391 392 393
- 394 395 396 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429
- 430 431 432 565 566 567 568 569 590 591 592 593 594 595 596 597 598 599
- 600 601] 
-
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  671
-ncols for train dataset =  23
-CV fold:  9
-Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  24  25  26  27  28  29
-  30  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45  46  47
-  48  49  50  51  52  53  54  55  56  57  58  59  60  61  62  63  64  65
-  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82  83
-  84  85  86 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119
- 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137
- 138 139 140 141 147 148 149 150 151 152 153 154 155 156 157 158 159 160
- 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178
- 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196
- 197 198 206 207 208 209 210 211 212 226 227 228 229 230 231 232 233 234
- 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252
- 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270
- 271 272 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297
- 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315
- 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333
- 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351
- 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369
- 370 371 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  76  77  78
+  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96
+  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114
+ 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132
+ 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150
+ 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168
+ 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186
+ 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
+ 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 256 257 258 259 260 271 272 273 274 275 276 277
+ 278 279 280 281 282 283 284 285 286 287 288 289 319 320 321 322 323 324
+ 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+ 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360
+ 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378
+ 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396
  397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414
  415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432
  433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450
@@ -505,6 +1034,53 @@ Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  24  25  26  27  
  541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
  559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576
  577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+ 595 596 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625
+ 626 627 628 629 630 631 632 633 639 640 641 642 643 644 645 646 647 648
+ 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666
+ 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684
+ 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702
+ 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
+ 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
+ 739 740 741 742 743 744]
+Test Index:  [ 69  70  71  72  73  74  75 247 248 249 250 251 252 253 254 255 261 262
+ 263 264 265 266 267 268 269 270 290 291 292 293 294 295 296 297 298 299
+ 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
+ 318 597 598 599 600 601 602 603 604 605 606 607 608 609 634 635 636 637
+ 638] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
+CV fold:  4
+Train Index:  [ 16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33
+  34  35  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51
+  52  53  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69
+  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87
+  88  89  90  91  92  93  99 100 101 102 103 104 105 106 107 108 109 110
+ 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128
+ 129 130 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158
+ 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176
+ 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194
+ 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212
+ 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230
+ 231 232 233 234 235 247 248 249 250 251 252 253 254 255 256 257 258 259
+ 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277
+ 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295
+ 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313
+ 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331
+ 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349
+ 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367
+ 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385
+ 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403
+ 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421
+ 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439
+ 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457
+ 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475
+ 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493
+ 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511
+ 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529
+ 530 531 532 533 534 535 536 537 538 539 540 570 571 572 573 574 575 576
+ 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
  595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612
  613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630
  631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648
@@ -514,165 +1090,532 @@ Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  24  25  26  27  
  703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
  721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
  739 740 741 742 743 744]
-Test Index:  [ 12  13  14  15  16  17  18  19  20  21  22  23  87  88  89  90  91  92
-  93  94  95  96  97  98  99 100 101 102 103 104 142 143 144 145 146 199
- 200 201 202 203 204 205 213 214 215 216 217 218 219 220 221 222 223 224
- 225 273 274 275 276 277 278 279 280 281 372 373 374 375 376 377 378 379
- 380] 
+Test Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  94  95
+  96  97  98 131 132 133 134 135 136 137 138 139 140 141 142 236 237 238
+ 239 240 241 242 243 244 245 246 541 542 543 544 545 546 547 548 549 550
+ 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568
+ 569] 
 
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  672
-ncols for train dataset =  23
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
+CV fold:  5
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 121 122 123 124 125 126 127 128 129 130 131 132 133 134
+ 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152
+ 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
+ 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188
+ 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206
+ 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224
+ 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242
+ 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260
+ 261 262 263 264 265 266 267 268 269 270 276 277 278 279 280 290 291 292
+ 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310
+ 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328
+ 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346
+ 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364
+ 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382
+ 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400
+ 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 435 436
+ 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454
+ 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472
+ 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490
+ 491 492 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525
+ 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543
+ 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561
+ 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579
+ 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597
+ 598 599 600 601 602 603 604 605 606 607 608 609 622 623 624 625 626 627
+ 628 629 630 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645
+ 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663
+ 664 665 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681
+ 682 683 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699
+ 700 701 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722
+ 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740
+ 741 742 743 744]
+Test Index:  [112 113 114 115 116 117 118 119 120 271 272 273 274 275 281 282 283 284
+ 285 286 287 288 289 417 418 419 420 421 422 423 424 425 426 427 428 429
+ 430 431 432 433 434 493 494 495 496 497 498 499 500 501 502 503 504 505
+ 506 507 508 509 610 611 612 613 614 615 616 617 618 619 620 621 702 703
+ 704 705 706] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  670
+ncols for train dataset =  7
+CV fold:  6
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 154
+ 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172
+ 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190
+ 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208
+ 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226
+ 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244
+ 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262
+ 263 264 265 266 267 268 269 270 271 272 273 274 275 281 282 283 284 285
+ 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303
+ 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321
+ 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339
+ 340 341 342 343 344 345 346 347 348 367 368 369 370 371 381 382 383 384
+ 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402
+ 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420
+ 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438
+ 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456
+ 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474
+ 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492
+ 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510
+ 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528
+ 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546
+ 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564
+ 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582
+ 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605
+ 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623
+ 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639 640 641
+ 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659
+ 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675 676 677
+ 678 679 680 681 682 683 693 694 695 696 697 698 699 700 701 702 703 704
+ 705 706 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
+ 740 741 742 743 744]
+Test Index:  [143 144 145 146 147 148 149 150 151 152 153 276 277 278 279 280 349 350
+ 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 372 373
+ 374 375 376 377 378 379 380 583 584 585 586 587 684 685 686 687 688 689
+ 690 691 692 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
+ 722 723] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  7
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148
+ 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166
+ 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
+ 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202
+ 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220
+ 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238
+ 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256
+ 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274
+ 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292
+ 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310
+ 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328
+ 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346
+ 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364
+ 365 366 372 373 374 375 376 377 378 379 380 399 400 401 402 403 404 405
+ 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423
+ 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441
+ 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459
+ 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477
+ 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495
+ 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513
+ 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531
+ 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
+ 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576
+ 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+ 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612
+ 613 614 615 616 617 618 619 620 621 634 635 636 637 638 639 640 641 642
+ 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660
+ 661 662 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686 687
+ 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705
+ 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722 723
+ 740 741 742 743 744]
+Test Index:  [126 127 128 129 130 367 368 369 370 371 381 382 383 384 385 386 387 388
+ 389 390 391 392 393 394 395 396 397 398 532 533 534 535 536 537 538 539
+ 540 622 623 624 625 626 627 628 629 630 631 632 633 663 664 665 666 667
+ 668 669 670 671 724 725 726 727 728 729 730 731 732 733 734 735 736 737
+ 738 739] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  8
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 112 113 114 115 116
+ 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134
+ 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152
+ 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170
+ 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188
+ 189 190 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 261 262 263
+ 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281
+ 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299
+ 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
+ 318 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365
+ 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383
+ 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401
+ 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419
+ 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437
+ 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455
+ 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473
+ 474 475 476 477 478 493 494 495 496 497 498 499 500 501 502 503 504 505
+ 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523
+ 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541
+ 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559
+ 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577
+ 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595
+ 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613
+ 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631
+ 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649
+ 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667
+ 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685
+ 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703
+ 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721
+ 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739
+ 740 741 742 743 744]
+Test Index:  [103 104 105 106 107 108 109 110 111 191 192 193 194 195 196 197 198 199
+ 200 201 202 203 204 205 206 256 257 258 259 260 319 320 321 322 323 324
+ 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+ 343 344 345 346 347 348 479 480 481 482 483 484 485 486 487 488 489 490
+ 491 492] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  671
+ncols for train dataset =  7
+CV fold:  9
+Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
+  36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89
+  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
+ 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
+ 144 145 146 147 148 149 150 151 152 153 179 180 181 182 183 184 185 186
+ 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204
+ 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+ 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+ 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258
+ 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276
+ 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294
+ 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312
+ 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330
+ 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348
+ 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366
+ 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384
+ 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402
+ 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420
+ 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438
+ 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456
+ 457 458 459 460 479 480 481 482 483 484 485 486 487 488 489 490 491 492
+ 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510
+ 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528
+ 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546
+ 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564
+ 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582
+ 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600
+ 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618
+ 619 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636
+ 637 638 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663
+ 664 665 666 667 668 669 670 671 684 685 686 687 688 689 690 691 692 702
+ 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720
+ 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738
+ 739 740 741 742 743 744]
+Test Index:  [154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171
+ 172 173 174 175 176 177 178 461 462 463 464 465 466 467 468 469 470 471
+ 472 473 474 475 476 477 478 639 640 641 642 643 644 645 646 647 672 673
+ 674 675 676 677 678 679 680 681 682 683 693 694 695 696 697 698 699 700
+ 701] 
+
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  672
+ncols for train dataset =  7
 CV fold:  10
 Train Index:  [  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
   18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35
   36  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
-  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  87  88  89
-  90  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107
- 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125
- 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143
- 144 145 146 147 148 149 150 151 152 153 154 155 156 162 163 164 165 166
- 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184
- 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202
- 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220
- 221 222 223 224 225 251 252 253 254 255 256 257 258 259 260 261 262 263
- 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281
- 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299
- 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317
- 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335
- 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353
- 354 355 356 357 358 359 360 361 362 372 373 374 375 376 377 378 379 380
- 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398
- 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416
- 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434
- 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452
- 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470
- 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488
- 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506
- 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524
- 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542
- 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560
- 561 562 563 564 565 566 567 568 569 576 577 578 579 580 586 587 588 589
- 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 607
- 608 609 610 611 612 613 614 615 616 617 618 619 629 630 631 632 633 634
- 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649 650 651 652
- 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667 668 669 670
+  54  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71
+  72  73  74  75  94  95  96  97  98  99 100 101 102 103 104 105 106 107
+ 108 109 110 111 112 113 114 115 116 117 118 119 120 126 127 128 129 130
+ 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148
+ 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166
+ 167 168 169 170 171 172 173 174 175 176 177 178 191 192 193 194 195 196
+ 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214
+ 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232
+ 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250
+ 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268
+ 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286
+ 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304
+ 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322
+ 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340
+ 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358
+ 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376
+ 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394
+ 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412
+ 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430
+ 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448
+ 449 450 451 452 453 454 455 461 462 463 464 465 466 467 468 469 470 471
+ 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489
+ 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507
+ 508 509 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547
+ 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565
+ 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583
+ 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601
+ 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619
+ 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637
+ 638 639 640 641 642 643 644 645 646 647 663 664 665 666 667 668 669 670
  671 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686 687 688
  689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706
  707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722 723 724
  725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740 741 742
  743 744]
-Test Index:  [ 69  70  71  72  73  74  75  76  77  78  79  80  81  82  83  84  85  86
- 157 158 159 160 161 226 227 228 229 230 231 232 233 234 235 236 237 238
- 239 240 241 242 243 244 245 246 247 248 249 250 363 364 365 366 367 368
- 369 370 371 570 571 572 573 574 575 581 582 583 584 585 620 621 622 623
- 624 625 626 627 628] 
+Test Index:  [ 76  77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93
+ 121 122 123 124 125 179 180 181 182 183 184 185 186 187 188 189 190 456
+ 457 458 459 460 510 511 512 513 514 515 516 517 518 519 520 521 522 523
+ 524 525 526 527 528 529 530 531 648 649 650 651 652 653 654 655 656 657
+ 658 659 660 661 662] 
 
-GBM_grid_1_AutoML_20191030_224221_model_62
-nrows forAMtZHszN5KGaZQ9c project train dataset =  668
-ncols for train dataset =  23
+StackedEnsemble_BestOfFamily_AutoML_20210217_124248
+nrows for train dataset =  668
+ncols for train dataset =  7
 Parse progress: |█████████████████████████████████████████████████████████| 100%
 AutoML progress: |
-22:56:08.407: Project: AMtZHszN5KGaZQ9c
-22:56:08.407: AutoML job created: 2019.10.30 22:56:08.407
-22:56:08.407: Custom fold column, Fold_no, will be used. nfolds value will be ignored.
-22:56:08.407: Build control seed: 1
-22:56:08.407: training frame: Frame key: automl_training_Key_Frame__upload_8e50baadcd8f2df7dbf131ed681c4578.hex    cols: 25    rows: 745  chunks: 1    size: 48966  checksum: -8130076172500897109
-22:56:08.407: validation frame: NULL
-22:56:08.407: leaderboard frame: NULL
-22:56:08.407: blending frame: NULL
-22:56:08.407: response column: Q_perc
-22:56:08.407: fold column: [745,1.0/5.495302013422814/10.0,  813  B, {/127.0.0.1:61071:0:}]
-22:56:08.407: weights column: null
-22:56:08.408: Setting stopping tolerance adaptively based on the training frame: 0.03663716527236558
-22:56:08.409: AutoML build started: 2019.10.30 22:56:08.408
+12:48:42.643: Project: Abvd1gxcYZBRbj34
+12:48:42.643: Fold column Fold_no will be used for cross-validation. nfolds parameter will be ignored.
+12:48:42.643: Setting stopping tolerance adaptively based on the training frame: 0.03663716527236558
+12:48:42.643: Build control seed: 35036138
+12:48:42.643: training frame: Frame key: automl_training_Key_Frame__upload_8f9b97da8eb6bc52a80e8d41681b4678.hex    cols: 9    rows: 745  chunks: 1    size: 20882  checksum: -2568361079957462725
+12:48:42.643: validation frame: NULL
+12:48:42.643: leaderboard frame: NULL
+12:48:42.643: blending frame: NULL
+12:48:42.643: response column: Q_perc
+12:48:42.643: fold column: [745,1.0/5.495302013422814/10.0,  813  B, {/127.0.0.1:61077:0:}]
+12:48:42.643: weights column: null
+12:48:42.644: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:48:42.644: AutoML job created: 2021.02.17 12:48:42.643
+12:48:42.644: AutoML build started: 2021.02.17 12:48:42.644
+12:48:42.644: AutoML: starting XGBoost_1_AutoML_20210217_124842 model training
+
+█
+12:48:44.646: New leader: XGBoost_1_AutoML_20210217_124842, rmse: 19.340530731493114
+12:48:44.646: AutoML: starting XGBoost_2_AutoML_20210217_124842 model training
+
+
+12:48:45.648: New leader: XGBoost_2_AutoML_20210217_124842, rmse: 18.202791074277215
+12:48:45.648: AutoML: starting XGBoost_3_AutoML_20210217_124842 model training
 
 ██
-22:56:16.417: New leader: XGBoost_1_AutoML_20191030_225608, rmse: 15.552824494446801
+12:48:47.650: AutoML: starting GLM_1_AutoML_20210217_124842 model training
+
+█
+12:48:48.652: AutoML: starting DRF_1_AutoML_20210217_124842 model training
+
+█
+12:48:49.654: New leader: DRF_1_AutoML_20210217_124842, rmse: 17.140964454514673
+12:48:49.654: AutoML: starting GBM_1_AutoML_20210217_124842 model training
 
 ██
-22:56:23.422: New leader: XGBoost_3_AutoML_20191030_225608, rmse: 15.410051520546634
-22:56:23.422: AutoML: starting GLM hyperparameter search
+12:48:50.656: New leader: GBM_1_AutoML_20210217_124842, rmse: 15.795020820774782
+12:48:50.656: AutoML: starting GBM_2_AutoML_20210217_124842 model training
+12:48:51.658: AutoML: starting GBM_3_AutoML_20210217_124842 model training
+
+█
+12:48:52.660: AutoML: starting GBM_4_AutoML_20210217_124842 model training
+
+██
+12:48:53.662: AutoML: starting GBM_5_AutoML_20210217_124842 model training
+
+██
+12:48:54.664: AutoML: starting DeepLearning_1_AutoML_20210217_124842 model training
+12:48:55.667: AutoML: starting XRT_1_AutoML_20210217_124842 model training
+
+██
+12:48:56.669: AutoML: starting XGBoost_grid__1_AutoML_20210217_124842 hyperparameter search
+
+████████████████████
+12:49:16.292: AutoML: starting GBM_grid__1_AutoML_20210217_124842 hyperparameter search
+
+████████
+12:49:27.477: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124842 hyperparameter search
 
 ████
-22:56:29.434: New leader: GBM_4_AutoML_20191030_225608, rmse: 15.2772469229594
+12:49:32.485: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124842 hyperparameter search
 
-████
-22:56:32.440: AutoML: starting XGBoost hyperparameter search
+██████████| 100%
+
+12:49:44.492: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124842 model training
+12:49:45.494: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124842 model training
+12:49:46.498: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:49:46.498: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:49:46.498: AutoML build stopped: 2021.02.17 12:49:46.498
+12:49:46.498: AutoML build done: built 46 models
+12:49:46.498: AutoML duration:  1 min  3.854 sec
+
+Best 10cv project name: Abvd1gxcYZBRbj34
+Best 10cv seed: 35036138
+Parse progress: |█████████████████████████████████████████████████████████| 100%
+AutoML progress: |
+12:48:42.643: Project: Abvd1gxcYZBRbj34
+12:48:42.643: Fold column Fold_no will be used for cross-validation. nfolds parameter will be ignored.
+12:48:42.643: Setting stopping tolerance adaptively based on the training frame: 0.03663716527236558
+12:48:42.643: Build control seed: 35036138
+12:48:42.643: training frame: Frame key: automl_training_Key_Frame__upload_8f9b97da8eb6bc52a80e8d41681b4678.hex    cols: 9    rows: 745  chunks: 1    size: 20882  checksum: -2568361079957462725
+12:48:42.643: validation frame: NULL
+12:48:42.643: leaderboard frame: NULL
+12:48:42.643: blending frame: NULL
+12:48:42.643: response column: Q_perc
+12:48:42.643: fold column: [745,1.0/5.495302013422814/10.0,  813  B, {/127.0.0.1:61077:0:}]
+12:48:42.643: weights column: null
+12:48:42.644: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:48:42.644: AutoML job created: 2021.02.17 12:48:42.643
+12:48:42.644: AutoML build started: 2021.02.17 12:48:42.644
+12:48:42.644: AutoML: starting XGBoost_1_AutoML_20210217_124842 model training
+12:48:44.646: New leader: XGBoost_1_AutoML_20210217_124842, rmse: 19.340530731493114
+12:48:44.646: AutoML: starting XGBoost_2_AutoML_20210217_124842 model training
+12:48:45.648: New leader: XGBoost_2_AutoML_20210217_124842, rmse: 18.202791074277215
+12:48:45.648: AutoML: starting XGBoost_3_AutoML_20210217_124842 model training
+12:48:47.650: AutoML: starting GLM_1_AutoML_20210217_124842 model training
+12:48:48.652: AutoML: starting DRF_1_AutoML_20210217_124842 model training
+12:48:49.654: New leader: DRF_1_AutoML_20210217_124842, rmse: 17.140964454514673
+12:48:49.654: AutoML: starting GBM_1_AutoML_20210217_124842 model training
+12:48:50.656: New leader: GBM_1_AutoML_20210217_124842, rmse: 15.795020820774782
+12:48:50.656: AutoML: starting GBM_2_AutoML_20210217_124842 model training
+12:48:51.658: AutoML: starting GBM_3_AutoML_20210217_124842 model training
+12:48:52.660: AutoML: starting GBM_4_AutoML_20210217_124842 model training
+12:48:53.662: AutoML: starting GBM_5_AutoML_20210217_124842 model training
+12:48:54.664: AutoML: starting DeepLearning_1_AutoML_20210217_124842 model training
+12:48:55.667: AutoML: starting XRT_1_AutoML_20210217_124842 model training
+12:48:56.669: AutoML: starting XGBoost_grid__1_AutoML_20210217_124842 hyperparameter search
+12:49:16.292: AutoML: starting GBM_grid__1_AutoML_20210217_124842 hyperparameter search
+12:49:27.477: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124842 hyperparameter search
+12:49:32.485: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124842 hyperparameter search
+12:49:44.492: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124842 model training
+12:49:45.494: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124842 model training
+12:49:46.498: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:49:46.498: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:49:46.498: AutoML build stopped: 2021.02.17 12:49:46.498
+12:49:46.498: AutoML build done: built 46 models
+12:49:46.498: AutoML duration:  1 min  3.854 sec
+12:49:47.950: Project: Abvd1gxcYZBRbj34
+12:49:47.950: Fold column Fold_no will be used for cross-validation. nfolds parameter will be ignored.
+12:49:47.950: Setting stopping tolerance adaptively based on the training frame: 0.03663716527236558
+12:49:47.950: Build control seed: 35036138
+12:49:47.950: training frame: Frame key: automl_training_Key_Frame__upload_a50cccd731cb4a32ceba81d420f64067.hex    cols: 9    rows: 745  chunks: 1    size: 20882  checksum: -2568361079957462725
+12:49:47.950: validation frame: NULL
+12:49:47.950: leaderboard frame: NULL
+12:49:47.950: blending frame: NULL
+12:49:47.950: response column: Q_perc
+12:49:47.950: fold column: [745,1.0/5.495302013422814/10.0,  813  B, {/127.0.0.1:61077:0:}]
+12:49:47.950: weights column: null
+12:49:47.950: New models will be added to existing leaderboard Abvd1gxcYZBRbj34@@Q_perc (leaderboard frame=null) with already 46 models.
+12:49:47.950: Loading execution steps: [{XGBoost : defaults}, {GLM : defaults}, {DRF : [def_1]}, {GBM : defaults}, {DeepLearning : defaults}, {DRF : [XRT]}, {XGBoost : grids}, {GBM : grids}, {DeepLearning : grids}, {GBM : [lr_annealing]}, {XGBoost : [lr_search]}, {StackedEnsemble : defaults}]
+12:49:47.951: AutoML job created: 2021.02.17 12:49:47.949
+12:49:47.951: AutoML build started: 2021.02.17 12:49:47.951
+12:49:47.951: AutoML: starting XGBoost_1_AutoML_20210217_124947 model training
+
+█
+12:49:50.956: AutoML: starting XGBoost_2_AutoML_20210217_124947 model training
+
+█
+12:49:51.959: AutoML: starting XGBoost_3_AutoML_20210217_124947 model training
+
+
+12:49:52.962: AutoML: starting GLM_1_AutoML_20210217_124947 model training
+
+█
+12:49:53.965: AutoML: starting DRF_1_AutoML_20210217_124947 model training
+
+█
+12:49:54.969: AutoML: starting GBM_1_AutoML_20210217_124947 model training
+
+██
+12:49:55.974: AutoML: starting GBM_2_AutoML_20210217_124947 model training
+12:49:56.977: AutoML: starting GBM_3_AutoML_20210217_124947 model training
+
+██
+12:49:57.981: AutoML: starting GBM_4_AutoML_20210217_124947 model training
+
+██
+12:49:58.984: AutoML: starting GBM_5_AutoML_20210217_124947 model training
+
+██
+12:49:59.987: AutoML: starting DeepLearning_1_AutoML_20210217_124947 model training
+12:50:00.990: AutoML: starting XRT_1_AutoML_20210217_124947 model training
+
+██
+12:50:01.994: AutoML: starting XGBoost_grid__1_AutoML_20210217_124947 hyperparameter search
 
 ████████████████
-22:58:59.990: AutoML: starting GBM hyperparameter search
+12:51:55.939: New leader: GBM_1_AutoML_20210217_124947, rmse: 15.795020820774782
 
-████████████
-22:59:12.93: New leader: GBM_grid_1_AutoML_20191030_225608_model_18, rmse: 15.064230704814332
+█
+12:52:12.10: AutoML: starting GBM_grid__1_AutoML_20210217_124947 hyperparameter search
 
 
-22:59:17.270: New leader: GBM_grid_1_AutoML_20191030_225608_model_25, rmse: 14.608141139812165
+12:52:13.173: New leader: GBM_1_AutoML_20210217_124842, rmse: 15.795020820774782
 
-████
-23:02:33.18: AutoML: starting DeepLearning hyperparameter search
+███████
+12:52:26.267: AutoML: starting DeepLearning_grid__1_AutoML_20210217_124947 hyperparameter search
 
-█████
-23:04:28.71: AutoML: starting DeepLearning hyperparameter search
-
-██
-23:06:23.114: AutoML: starting DeepLearning hyperparameter search
+██████████████
+12:54:05.304: AutoML: starting DeepLearning_grid__2_AutoML_20210217_124947 hyperparameter search
 
 ██
-23:08:22.169: New leader: StackedEnsemble_BestOfFamily_AutoML_20191030_225608, rmse: 13.940812653384178
+12:56:02.344: AutoML: starting DeepLearning_grid__3_AutoML_20210217_124947 hyperparameter search
 
-███| 100%
+█
+12:58:26.385: AutoML: starting StackedEnsemble_BestOfFamily_AutoML_20210217_124947 model training
+12:58:27.397: AutoML: starting StackedEnsemble_AllModels_AutoML_20210217_124947 model training
+12:58:28.409: No base models, due to timeouts or the exclude_algos option. Skipping StackedEnsemble 'monotonic'.
+12:58:28.409: Actual modeling steps: [{XGBoost : [def_1 (10), def_2 (10), def_3 (10)]}, {GLM : [def_1 (10)]}, {DRF : [def_1 (10)]}, {GBM : [def_1 (10), def_2 (10), def_3 (10), def_4 (10), def_5 (10)]}, {DeepLearning : [def_1 (10)]}, {DRF : [XRT (10)]}, {XGBoost : [grid_1 (100)]}, {GBM : [grid_1 (60)]}, {DeepLearning : [grid_1 (20), grid_2 (20), grid_3 (20)]}, {StackedEnsemble : [best (10), all (10)]}]
+12:58:28.409: AutoML build stopped: 2021.02.17 12:58:28.409
+12:58:28.409: AutoML build done: built 123 models
+12:58:28.409: AutoML duration:  8 min 40.458 sec
 
-23:08:26.180: AutoML build stopped: 2019.10.30 23:08:26.180
-23:08:26.180: AutoML build done: built 367 models
-23:08:26.180: AutoML duration: 12 min 17.772 sec
-
+█| 100%
 Saving leader h2o model in ./model_10cv and ./test_external
 
 The final model afer k-fold cv is located at: 
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/StackedEnsemble_BestOfFamily_AutoML_20191030_225608
+/home/kuba/Documents/NETS/FOR_GRID_PACKAGES/h2o_AutoML_v16_2/h2o_AutoML_Python-master/model_10cv/GBM_1_AutoML_20210217_124842
 
 Leader model: 
-StackedEnsemble_BestOfFamily_AutoML_20191030_225608
-
-The meta model of the best model is located at: 
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/metalearner_AUTO_StackedEnsemble_BestOfFamily_AutoML_20191030_225608
-
-Saving constituents of the StackedEnsemble
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/GBM_grid_1_AutoML_20191030_225608_model_25
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/XGBoost_grid_1_AutoML_20191030_225608_model_2
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/XRT_1_AutoML_20191030_225608
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/DRF_1_AutoML_20191030_225608
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/DeepLearning_grid_1_AutoML_20191030_225608_model_1
-/home/kuba/Documents/NETS/Kaggle/h2o_AutoML_Python_v13_ready_to_deploy_3/model_10cv/GLM_grid_1_AutoML_20191030_225608_model_1
-Stacked Ensemble model contains: 
-['GBM_grid_1_AutoML_20191030_225608_model_25', 'XGBoost_grid_1_AutoML_20191030_225608_model_2', 'XRT_1_AutoML_20191030_225608', 'DRF_1_AutoML_20191030_225608', 'DeepLearning_grid_1_AutoML_20191030_225608_model_1', 'GLM_grid_1_AutoML_20191030_225608_model_1']
+GBM_1_AutoML_20210217_124842
 errors     Fold_no        r2       rmse
-0        1  0.763598  14.010455
-1        2  0.773671  12.356821
-2        3  0.674738  14.492415
-3        4  0.848826  11.446905
-4        5  0.787926  13.639034
-5        6  0.860728  11.475193
-6        7  0.842046  12.208691
-7        8  0.640507  18.326808
-8        9  0.790565  15.943675
-9       10  0.795112  14.043984
-average_RMSE =  13.794398150960916
-average_R2 =  0.7777718447121852
+0        1  0.692602  15.976310
+1        2  0.574168  16.949475
+2        3  0.454881  18.761604
+3        4  0.784593  13.664068
+4        5  0.546349  19.948056
+5        6  0.905717   9.441565
+6        7  0.856941  11.618788
+7        8  0.552060  20.457476
+8        9  0.803401  15.447373
+9       10  0.858081  11.688316
+average_RMSE =  15.39530307910406
+average_R2 =  0.702879433519018
 overall_results
        predict  Q_perc  Fold_no
-0    26.621953  13.187        1
-1    37.371410  17.582        1
-2    41.505948  29.121        1
-3    44.989252  32.418        1
-4    51.849615  46.154        1
+0    13.751085   2.294        1
+1    22.248608   5.046        1
+2    30.589179  10.550        1
+3    32.115927  11.009        1
+4    39.777251  12.844        1
 ..         ...     ...      ...
-740  40.353778  35.082       10
-741  44.094360  41.639       10
-742  46.565906  49.180       10
-743  49.250359  50.164       10
-744  51.521878  51.475       10
+740  13.718780  34.862       10
+741  21.223625  38.532       10
+742  24.341891  56.881       10
+743  29.927508  66.055       10
+744  34.209141  82.569       10
 
 [745 rows x 3 columns]
-H2O session _sid_9e09 closed.
+Closing connection _sid_b140 at exit
+H2O session _sid_b140 closed.

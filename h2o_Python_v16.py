@@ -6,15 +6,18 @@ my_max_ram_allowed = 8
 my_keep_cross_validation_predictions = True
 my_keep_cross_validation_models = True
 my_keep_cross_validation_fold_assignment = True
-skel_plik = '10cv_new_PLGA_no'  # Please provide n-fold training core filenames if use_classic_approach is
-# True (filenames MUST contain '_no' part), copy files to ./10cv_FS
+skel_plik = '10cv_new_PLGA_no'  # Please provide n-fold training core filenames if use_classic_approach is True (filenames MUST contain '_no' part), copy files to ./10cv_FS
 skel_plik1 = 't-10cv_new_PLGA_no'  # Please provide n-fold testing core filenames if use_classic_approach is True (filenames MUST contain '_no' part), copy files to ./10cv_FS
 fs_data = 'PLGA_300in_SR_BAZA.txt'  # Please provide full filename if perform_FS is True or classic_approach without n-fold cv are to be run
 
-# init seeds - are randomly defined before calculations
-my_seed_FS = 1
-my_seed_classic_approach = 1
-my_seed_FS_10cv = 1
+# user specified seeds - if set to number in range (1, 10000000), only one loop is run, to apply all loops please use:
+# my_random_seed_FS = None
+# my_seed_classic_approach = None
+# my_random_seed_10cv = None
+
+my_random_seed_FS = None
+my_seed_classic_approach = None
+my_random_seed_10cv = None
 
 # backward compatibility - if true - a classic way of training AutoML will be performed
 # YOU NEED TO COPY t-res files into ./10cv_FS folder - folds have to numbered t-res*no1.txt, t-res*no2.txt etc. every file must have header in first row!
@@ -26,23 +29,24 @@ save_pojo_or_mojo: bool = True
 # How many fold in cross validation is used only if perform_FS is True
 no_folds = 10
 
-# 10cv AutoML execution time
-# Refers to classic_approach and perform_FS
-h2o_max_runtime_secs_10cv = 1*60
-h2o_max_runtime_secs_2nd_time_10cv = 10*60
-
-# How many short loops of 10cv
-# - only if perform_FS is True
-my_10cv_loops: int = 15
-
-# perfor_FS AutoML execution time
+# perform_FS AutoML execution time
 # - only if perform_FS is True
 FS_h2o_max_runtime_secs = 40
-FS_h2o_max_runtime_secs_2nd_time = 1*60
+FS_h2o_max_runtime_secs_2nd_time = 5*60
 
 # How many loops of FS
 # - only if perform_FS is True
 my_FS_loops: int = 10
+
+# 10cv AutoML execution time
+# Refers to classic_approach and perform_FS
+h2o_max_runtime_secs_10cv = 60
+h2o_max_runtime_secs_2nd_time_10cv = 10*60
+
+# How many short loops of 10cv
+# - only if perform_FS is True
+my_10cv_loops: int = 10
+
 
 # -----------------------------------------------------------
 # Perform feature selection before training AutoML in 10-fold cv
@@ -67,21 +71,19 @@ include_features = []
 
 # Feature selection threshold - range = [0; 1] - usually between 0.01 and 0.001
 # - only if perform_FS is True
-fs_threshold = 0.01
+fs_threshold = 0.05
 
 # Feature selection short loop RMSE threshold
 # - only if perform_FS is True
-rmse_fs_short_loop_threshold = 10.0
+rmse_fs_short_loop_threshold = 5.0
 
 # 10-cv short loop RMSE threshold
 # - only if perform_FS is True
-rmse_10cv_short_loop_threshold = 10.0
+rmse_10cv_short_loop_threshold = 5.0
 
 # Which column contains indicies to make split - 1 = 1st col, 2 = 2nd col etc. 
 # - only if perform_FS is True
 index_column = 1
-
-# down part
 
 # ------------------------------------------------------------------------------
 # Do not modify below
@@ -198,7 +200,8 @@ h2o.init(nthreads=my_threads,
 
 if perform_FS is True:
 
-    # checking if my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS, my_model_10cv are empty if not delete content
+    # checking if my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS,
+    # my_model_10cv are empty if not delete content
     print('\n' + 'Checking for non-empty dirs ...' + '\n')
     checking_list = [my_10cv_FS_dir, my_10cv_orig_dir, my_pojo_or_mojo_FS, my_pojo_or_mojo_10cv, my_model_FS,
                      my_model_10cv]
@@ -228,12 +231,23 @@ if perform_FS is True:
     # the counter is set from 1, therefore = my_FS_loops + 1
     while no_FS_loops < (my_FS_loops + 1):
 
-        # print out no of loop
-        print('\n' + 'Starting FS loop no: ' + str(no_FS_loops) + '\n')
-        tmp_my_random_seed_FS = random.randint(1, 100000000)
-        print('Temp random seed: ' + str(tmp_my_random_seed_FS) + '\n')
-        tmp_aml_name = 'A' + random_key_generator(15)
-        
+        if my_random_seed_FS == None:
+            # print out no of loop
+            print('\n' + 'Starting FS loop no: ' + str(no_FS_loops) + '\n')
+            tmp_my_random_seed_FS = random.randint(1, 100000000)
+            print('Temp random seed: ' + str(tmp_my_random_seed_FS) + '\n')
+            tmp_aml_name = 'A' + random_key_generator(15)
+
+        elif my_random_seed_FS != None:
+            # print out no of loop
+            print('Feature selection seed was set to: ' +'\n')
+            print(str(my_random_seed_FS) + '\n')
+            print('Omitting loop mode' + '\n')
+
+            my_FS_loops = no_FS_loops
+            tmp_my_random_seed_FS = my_random_seed_FS
+            tmp_aml_name = 'A' + random_key_generator(15)
+
         # split on train - test dataset by group 'Formulation no' - this is for Feature Selection
         tmp_train_inds, tmp_test_inds = next(
             GroupShuffleSplit(n_splits=1, train_size=0.7, test_size=0.3, random_state=tmp_my_random_seed_FS).split(X, groups=groups))
@@ -393,7 +407,7 @@ if perform_FS is True:
         m = h2o.get_model(model_ids[0])
 
         # get the metalearner model
-        meta = h2o.get_model(m.metalearner()['name'])
+        meta = h2o.get_model(m.metalearner().model_id)
 
         # get varimp_df from metalearner
         if ('glm' in meta.algo) is True:
@@ -507,7 +521,7 @@ if perform_FS is True:
 
 
 # ---------------------------------------------------------------------------
-# 2nd option - use_classic_approach - it is considered that perfor_FS = False
+# 2nd option - use_classic_approach - it is considered that perform_FS = False
 # ---------------------------------------------------------------------------
 
 if use_classic_approach is True and perform_FS is False:
@@ -612,11 +626,19 @@ if use_classic_approach is True and perform_FS is False:
     y_idx = df_classic.columns[df_classic.shape[1] - 2]
     training_frame = h2o.H2OFrame(df_classic)
 
+    # setting seed
+    if my_seed_classic_approach != None:
+        my_seed_classic_approach = my_seed_classic_approach
+        print('Seed was set to: ' + '\n')
+        print(str(my_seed_classic_approach) + '\n')
+        
+    elif my_seed_classic_approach == None:
+        my_seed_classic_approach = random.randint(1, 100000000)
+        print('Random seed: ' + '\n')
+        print(str(my_seed_classic_approach) + '\n')
+
     # assign fold column name
     assignment_type = 'Fold_no'
-    
-    # random init seed
-    my_seed_classic_approach = random.randint(1, 100000000)
 
     # set new AutoML options
     aml_10cv = H2OAutoML(max_runtime_secs=h2o_max_runtime_secs_2nd_time_10cv,
@@ -664,7 +686,7 @@ if use_classic_approach is True and perform_FS is False:
 
     if ("StackedEnsemble" in aml_10cv.leader.key) is True:
         # get the metalearner name
-        se_meta_model = h2o.get_model(m.metalearner()['name'])
+        se_meta_model = h2o.get_model(m.metalearner().model_id)
         my_se_meta_model_path = h2o.save_model(se_meta_model, path='./model_10cv')
         print('')
         print('The meta model of the best model is located at: ')
@@ -695,7 +717,7 @@ if use_classic_approach is True and perform_FS is False:
 
 
 # -------------------------------------------------------------------------------------------------------
-# 3rd option - use_classic_approach is False and perfor_FS is True - this option is considered as default
+# 3rd option - use_classic_approach is False and perform_FS is True - this option is considered as default
 # -------------------------------------------------------------------------------------------------------
 
 if use_classic_approach is False and perform_FS is True:
@@ -710,13 +732,25 @@ if use_classic_approach is False and perform_FS is True:
 
             my_10cv_loops_counter += 1
 
-            # Print out some info about no of loops and names of the project etc.
-            print("10cv loop: ", my_10cv_loops_counter, "\n")
-            current_my_random_seed_10cv = random.randint(1, 100000000)
-            print('Current random seed: ' + str(current_my_random_seed_10cv) + '\n')
-            current_aml_10cv_name = 'A' + random_key_generator(15)
-            print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
-            
+            if my_random_seed_10cv == None:
+                 # Print out some info about no of loops and names of the project etc.
+                print("10cv loop: ", my_10cv_loops_counter, "\n")
+                current_my_random_seed_10cv = random.randint(1, 100000000)
+                print('Current random seed: ' + str(current_my_random_seed_10cv) + '\n')
+                current_aml_10cv_name = 'A' + random_key_generator(15)
+                print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
+
+            elif my_random_seed_10cv != None:
+                 # Print out some info about no of loops and names of the project etc.
+                print('Seed of 10cv was set to: ' + '\n')
+                print(str(my_random_seed_10cv) + '\n')
+                
+                current_aml_10cv_name = 'A' + random_key_generator(15)
+                print('Current random project name: ' + str(current_aml_10cv_name) + '\n')
+                
+                current_my_random_seed_10cv = my_random_seed_10cv
+                my_10cv_loops_counter = my_10cv_loops
+
             # make random shuffle by group -----------------------
             
             # needed to make cv by groups - first column contains indicies!
@@ -870,6 +904,20 @@ if use_classic_approach is False and perform_FS is True:
                 for filename in glob.glob('./10cv_orig/*current*'):
                     new_name = re.sub("current_", "", filename)
                     os.rename(filename, new_name)
+                    
+            elif my_random_seed_10cv != None:
+                my_random_seed_10cv = current_my_random_seed_10cv
+                aml_10cv_name = current_aml_10cv_name
+                best_rmse_10cv = current_rmse_10cv
+                # rename *current* files
+                for filename in glob.glob('./10cv_FS/*current*'):
+                    new_name = re.sub("current_", "", filename)
+                    os.rename(filename, new_name)
+
+                for filename in glob.glob('./10cv_orig/*current*'):
+                    new_name = re.sub("current_", "", filename)
+                    os.rename(filename, new_name)
+                
 
             if best_rmse_10cv >= current_rmse_10cv:
                 my_random_seed_10cv = current_my_random_seed_10cv
@@ -1037,7 +1085,7 @@ if use_classic_approach is False and perform_FS is True:
 
     if ("StackedEnsemble" in aml_10cv.leader.key) is True:
         # get the metalearner name
-        se_meta_model = h2o.get_model(m.metalearner()['name'])
+        se_meta_model = h2o.get_model(m.metalearner().model_id)
 
         my_se_meta_model_path = h2o.save_model(se_meta_model, path='./model_10cv')
         print('')
