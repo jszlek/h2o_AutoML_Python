@@ -743,7 +743,8 @@ if use_classic_approach is False and perform_FS is True:
             
             # overwrite current seed to my random seed
             current_my_random_seed_10cv = my_random_seed_10cv
-            my_10cv_loops_counter = my_10cv_loops
+            my_10cv_loops = 1
+            aml_10cv_name = current_aml_10cv_name # this is unecessary, because line 903
         
         elif my_random_seed_10cv == None:
             # If my_random_seed_10cv is None initialize seed and project name
